@@ -1,0 +1,135 @@
+
+body{
+
+    background: image(1.jpg);
+}
+.container-profile{
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    margin-bottom: 198px;
+}
+img.logo{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    box-shadow: 0px 0px 4px;
+}
+h1.name{
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+span.slogan{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 159px;
+
+}
+.grid-container{
+    display: flex;
+    padding: 10px;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+img.logo-skill{
+    width: 50px;
+}
+.flex-aling{
+    margin-right: px;
+}
+.flex-text{
+    margin-top: 15px;
+}
+h5.skill-text{
+    text-transform: uppercase;
+}
+
+.container-img{
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 20%);
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: row;
+    width: min(100%, 850px);
+    margin-bottom: 100px;
+}
+table tr td{
+  /*  border: 1px solid rebeccapurple;*/
+    padding: 1rem 2rem;
+}
+.project-table{
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+  }
+.img-card{
+    border-radius: 5px 5px 0 0;
+}
+.card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }
+  .from-con{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 500px;
+    margin-bottom: 100px;
+    height: 500px;
+    display: block;
+  }
+  
+  input[type=submit] {
+    width: 400px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit1]:hover {
+    background-color: #45a049;
+  }
+  label{
+    
+    display: inline;     /* for IE7*/
+            /* for IE7*/
+    float: left;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    width: 140px;
+  }
+  textarea {
+    resize: none;
+  }
+  button{
+    padding: 0.5rem 1.5rem;
+  }
+
+
