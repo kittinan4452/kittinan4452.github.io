@@ -60,9 +60,13 @@ h5.skill-text{
     width: min(100%, 850px);
     margin-bottom: 100px;
 }
+table{
+  margin-right: 10px;
+}
 table tr td{
   /*  border: 1px solid rebeccapurple;*/
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
+    width: 200px;
 }
 .project-table{
     margin-top: 100px;
@@ -97,7 +101,7 @@ table tr td{
     padding: 20px;
     width: 500px;
     margin-bottom: 100px;
-    height: 500px;
+    height: auto;
     display: block;
   }
   
@@ -131,5 +135,12 @@ table tr td{
   button{
     padding: 0.5rem 1.5rem;
   }
+  @media only screen and (max-width: 400px){
+    .from-con{
+      width: 350px;
+    }
+  }
+  
+  
 
 
