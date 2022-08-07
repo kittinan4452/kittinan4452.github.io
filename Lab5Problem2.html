@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let userinput;
+    let number = 0;
+    let average; 
+    let arrayNumber = [];
+    list = readinput(userinput,arrayNumber);
+    function readinput(userinput,arrayNumber){
+        this.userinput = userinput;
+        this.arrayNumber = arrayNumber;
+        do {
+        userinput = Number(prompt("Enter an integer (a negative integerto qult):"));
+        if(userinput > 0 && number >= 0){ 
+            number += 1;
+            arrayNumber.push(userinput);
+            
+        } else if (userinput < 0 && number <= 0 ){
+            arrayNumber.push(0);
+        }
+     } while (userinput > 0 || isNaN(userinput));
+     return this.arrayNumber
+    };
+     function displayStats(list,average){
+        let sumArraylits  = 0;
+        let numbertwo = 0;
+        for (i = 0; i< number; i++){
+            sumArraylits  += list[i];
+            numbertwo += i
+        }
+        
+        this.sumArraylits  = sumArraylits ;
+        this.numbertwo = numbertwo;
+        this.ave = function(){
+            this.average = sumArraylits  / numbertwo; 
+            return this.average;
+        };
+     }
+     
+      let c =new displayStats(list,average);
+      
+      if(list[0] == 0){
+      alert("For the userinput "+0+" the average is "+0+" the minimom is "+Math.min.apply(Math, arrayNumber)+" and the maximum is "+Math.max.apply(Math, arrayNumber));
+        
+      }else{
+        alert("For the userinput "+arrayNumber+" the average is "+c.ave().toFixed(2)+" the minimom is "+Math.min.apply(Math, arrayNumber)+" and the maximum is "+Math.max.apply(Math, arrayNumber));
+      }
+
+      
+ </script>
+ <style>
+    h2{
+        text-align: center;
+        font-weight: 900;
+    }
+    li{
+        font-weight: 900;
+    }
+</style>
+<body>
+    <h2>Statistics Calculator!</h2>
+    <h1>Write the web app to prompt accepting for positive integers until the user enters a negative integer</h1>
+    <ul>
+        <li>If the entered text is not a positive integer number, then the web app will keep asking for a number until the valid positive integer is entered </li>
+        <li>If the entered text is a negative integer, then the web app will show the statistics (average, min, max) of all entered positive integers</li>
+        <li>If the user enters a negative integer as the first integer, the average, the min, and the max is 0</li>
+    </ul>
+    <h1>Note:</h1>
+    <ul>
+        <li>1. You need to implement functions to check whether an entered text is a positive integer or not and <br> whether an entered text is a negative integer or not</li> 
+        <li>2. You need to implement functions to compute average,min,and max of a list of integers</li>
+    </ul>
+    
+</body>
+</html>
