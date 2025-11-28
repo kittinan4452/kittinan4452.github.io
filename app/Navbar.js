@@ -1,51 +1,68 @@
-'use client';
+"use client";
 import { useState, useEffect } from "react";
 // นำเข้า Icon จาก Lucide แทนการใช้ Emoji ใน Desktop (ถ้าต้องการ)
-import { Home, Code, Zap, Mail, Menu, X, User, Wrench } from 'lucide-react'; 
+import { Home, Code, Zap, Mail, Menu, X, User, Wrench } from "lucide-react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+ useEffect(() => {
+  const hash = window.location.hash;
+
+  if (hash) {
+    const targetId = hash.replace("#", "");
+    const element = document.getElementById(targetId);
+
+    if (element) {
+      const timer = setTimeout(() => {
+        element.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+
+      // ⭐ ล้าง hash ออกจาก URL
+      window.history.replaceState(null, null, "/");
+
+      return () => clearTimeout(timer);
+    }
+  }
+
+  const handleScroll = () => setScrolled(window.scrollY > 20);
+  window.addEventListener("scroll", handleScroll);
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
- const handleScrollToSection = (id) => {
-    // ลบเครื่องหมาย # ออกจาก id
-    const targetId = id.replace('#', ''); 
-    const element = document.getElementById(targetId);
-    
-    if (element) {
-        // ใช้ scrollIntoView เพื่อเลื่อนไปยัง Section นั้นๆ
-        element.scrollIntoView({ behavior: 'smooth' });
-    }
-    // ปิดเมนูหลังจากคลิก (สำหรับ mobile)
-    setIsMenuOpen(false);
-    
-    // 🚨 ป้องกันไม่ให้ URL เปลี่ยนแปลง (ไม่ใส่ #)
-    if (window.history && window.history.pushState) {
-        window.history.pushState(null, null, `/${targetId}`); 
-    } else {
-        window.location.hash = targetId; // Fallback
-    }
+const handleScrollToSection = (id) => {
+  const targetId = id.replace("#", "");
+  const el = document.getElementById(targetId);
+
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth" });
+  }
+
+  setIsMenuOpen(false);
+
+  // ⭐ รีเซ็ต URL กลับเป็น root โดยไม่โหลดหน้า
+  window.history.replaceState(null, null, "/");
 };
 
-const menuItems = [
-    { href: "contentinfo", label: "Home", icon: <Home className="w-4 h-4" /> }, 
+
+  const menuItems = [
+    { href: "contentinfo", label: "Home", icon: <Home className="w-4 h-4" /> },
     { href: "about", label: "About Me", icon: <User className="w-4 h-4" /> },
-    { href: "skills", label: "Skills", icon: <Code className="w-4 h-4" /> }, 
-    { href: "experiences", label: "Experiences", icon: <Zap className="w-4 h-4" /> },
-    { href: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> }
-];
+    { href: "skills", label: "Skills", icon: <Code className="w-4 h-4" /> },
+    {
+      href: "experiences",
+      label: "Experiences",
+      icon: <Zap className="w-4 h-4" />,
+    },
+    { href: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> },
+  ];
 
   return (
     <nav className="fixed w-full z-50 top-0 left-0 transition-all duration-300">
@@ -57,9 +74,8 @@ const menuItems = [
         }`}
       >
         <div className="flex items-center justify-between mx-auto px-6 py-4 max-w-7xl">
-          
           {/* Logo */}
-          <a onClick={() => handleScrollToSection(item.href)}  className="group relative">
+          <a href="/" className="group relative">
             <div className="flex items-center">
               <span className="font-mono text-3xl font-bold text-red-600 group-hover:text-red-500 transition-colors duration-300">
                 {"<"}
@@ -92,9 +108,7 @@ const menuItems = [
                   <span className="text-red-500 group-hover:text-red-400 transition-colors duration-300">
                     {item.icon}
                   </span>
-                  <span className="relative z-10">
-                    {item.label}
-                  </span>
+                  <span className="relative z-10">{item.label}</span>
                   {/* ลบคลาสที่ Comment ไว้เพื่อความกระชับ */}
                 </a>
               </li>
@@ -109,13 +123,21 @@ const menuItems = [
           >
             <div className="absolute inset-0 rounded border border-red-600/30 group-hover:border-red-600 transition-colors duration-300"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-                {/* ใช้ Menu/X Icon แทน Hamburger Bars เพื่อความทันสมัย */}
-                <span className={`transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}>
-                    <Menu className="w-6 h-6 text-red-600" />
-                </span>
-                <span className={`absolute transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}>
-                    <X className="w-6 h-6 text-red-600" />
-                </span>
+              {/* ใช้ Menu/X Icon แทน Hamburger Bars เพื่อความทันสมัย */}
+              <span
+                className={`transition-opacity duration-300 ${
+                  isMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
+              >
+                <Menu className="w-6 h-6 text-red-600" />
+              </span>
+              <span
+                className={`absolute transition-opacity duration-300 ${
+                  isMenuOpen ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <X className="w-6 h-6 text-red-600" />
+              </span>
             </div>
           </button>
         </div>
@@ -126,19 +148,26 @@ const menuItems = [
             isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <ul className="px-6 py-4 space-y-2 border-t border-red-600/20 bg-black/70 backdrop-blur-sm"> {/* ปรับ background ให้เข้มขึ้นนิดหน่อย */}
+          <ul className="px-6 py-4 space-y-2 border-t border-red-600/20 bg-black/70 backdrop-blur-sm">
+            {" "}
+            {/* ปรับ background ให้เข้มขึ้นนิดหน่อย */}
             {menuItems.map((item, index) => (
               <li
                 key={index}
                 // 🚨 ปรับปรุง: เพิ่ม transform สำหรับ animation การเปิด/ปิดเมนู
-                className={`transform transition-all duration-300 ${isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
+                className={`transform transition-all duration-300 ${
+                  isMenuOpen
+                    ? "translate-x-0 opacity-100"
+                    : "-translate-x-4 opacity-0"
+                }`}
                 style={{
-                  transitionDelay: isMenuOpen ? `${index * 50}ms` : "0ms"
+                  transitionDelay: isMenuOpen ? `${index * 50}ms` : "0ms",
                 }}
               >
                 <a
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
+                //   href={item.href}
+                //   onClick={() => setIsMenuOpen(false)}
+                onClick={() => handleScrollToSection(item.href)}
                   className="flex items-center gap-3 px-4 py-3 font-mono text-sm text-gray-300 hover:text-white hover:bg-red-600/10 rounded border border-transparent hover:border-red-600/30 transition-all duration-300 group"
                 >
                   <span className="text-lg text-red-500">{item.icon}</span>
