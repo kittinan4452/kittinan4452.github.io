@@ -1,321 +1,296 @@
-"use client";
-import { useState } from "react"
-import Image from "next/image";
-import Internship from "../ImageGallery/Internship";
-export default function Experiences(){
-    const [showModal , setModel ] = useState()
+'use client';
+
+import { useState, useRef, useEffect } from 'react'; // 🚨 Import useRef และ useEffect
+import { Briefcase, Code, Award, Cpu, Calendar, Home, X } from 'lucide-react';
+import Image from 'next/image';
+
+export default function Experiences() {
+    const [activeModal, setActiveModal] = useState(null);
+    const modalRef = useRef(null); // 🚨 1. สร้าง Reference สำหรับ Modal Content
+
+    // 🚨 2. Logic สำหรับปิด Modal เมื่อคลิกนอก Modal
+    useEffect(() => {
+        // ฟังก์ชันจัดการเหตุการณ์คลิก
+        const handleClickOutside = (event) => {
+            // ตรวจสอบว่าคลิกนอก modalContent (ใช้ modalRef) และ modal กำลังเปิดอยู่หรือไม่
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setActiveModal(null);
+            }
+        };
+
+        // เพิ่ม Listener เมื่อ Modal เปิด
+        if (activeModal !== null) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        // Clean up: ลบ Listener เมื่อ Component unmount หรือ activeModal เปลี่ยนไป
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [activeModal]); // รันเมื่อ activeModal มีการเปลี่ยนแปลง
+
+    const experiences = [
+        // ... (ข้อมูลประสบการณ์เดิม)
+        {
+            id: 1,
+            title: "Internship",
+            company: "PlaySmart IoT and Systems",
+            image: "/tii-kittinan-pages/image/playsmart.jpg",
+            description: "Internship experience with playsmart iot and system company that teaches design and installation of iot systems, which has participated in making books on iot system development and has been an assistant training in iot system installation.",
+            icon: <Briefcase className="w-6 h-6" />,
+            color: "from-blue-500 to-cyan-500"
+        },
+        {
+            id: 2,
+            title: "Rice Quality Inspection System",
+            company: "Senior Project",
+            image: "/tii-kittinan-pages/image/projectrice.jpg",
+            description: "Project Rice Quality Inspection System is used to check the quality of rice by using Machine Learning and Digital image processing to work together and using a Web Application, using Django Framework and TailwindCSS framework to make it beautiful.",
+            icon: <Award className="w-6 h-6" />,
+            color: "from-green-500 to-emerald-500"
+        },
+        {
+            id: 3,
+            title: "Health Manage Calendar",
+            company: "Advanced Computer Programming",
+            image: "/tii-kittinan-pages/image/HealthCalendar/calendar.jpg",
+            description: "Health Manage Calendar is a program that helps in allocating the user's time to make it convenient by being able to add things to the program to allocate the time.",
+            icon: <Calendar className="w-6 h-6" />,
+            color: "from-purple-500 to-pink-500"
+        },
+        {
+            id: 4,
+            title: "Home Loan Simulation",
+            company: "Cloud App Project",
+            image: "/tii-kittinan-pages/image/projectclude/projectclude.jpg",
+            description: "Web application simulates home installments 3 years generate monthly reports on repayments, interest payments, principal payments and balance.",
+            icon: <Home className="w-6 h-6" />,
+            color: "from-orange-500 to-red-500"
+        },
+        {
+            id: 5,
+            title: "ESP-32 And Machine Learning",
+            company: "Wireless Personal Area Networks",
+            image: "/tii-kittinan-pages/image/esp32cam/esp32cam-ml.jpg",
+            description: "Project that brings hardware to work with Machine Learning by working through the ESP32-cam board to increase convenience for users in measuring productivity.",
+            icon: <Cpu className="w-6 h-6" />,
+            color: "from-yellow-500 to-orange-500"
+        },
+        {
+            id: 6,
+            title: "Project-Test-Front-End",
+            company: "Frontend Job Application",
+            image: "/tii-kittinan-pages/image/ics-test/1.jpg",
+            description: "This project is a test project for applying for a Front-end position at ICS company.",
+            icon: <Code className="w-6 h-6" />,
+            color: "from-indigo-500 to-purple-500"
+        }
+    ];
+
+    const modalContent = {
+        // ... (เนื้อหา Modal เดิม)
+        1: (
+            <div className="space-y-6">
+                <div className="flex flex-col items-center space-y-4">
+                    <Image src="/tii-kittinan-pages/image/playsmart1.jpg" width={600} height={400} className="rounded-xl shadow-lg" alt="Internship" />
+                    <p className="text-gray-300">The iot project is implemented using an ESP32 board to control various iot devices. There is a web application to operate the board, which works with a Mysql database and grafana to view data through a dashboard.</p>
+                </div>
+                <div className="flex flex-col items-center space-y-4">
+                    <Image src="/tii-kittinan-pages/image/platsmartbook.jpg" width={600} height={400} className="rounded-xl shadow-lg" alt="Book" />
+                    <p className="text-gray-300">Test, improve, and correct the code examples in the book 'Developing IoT on ESP32 Microcontroller with MicroPython'</p>
+                    <a className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.se-ed.com/product/%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2-IoT-%E0%B8%9A%E0%B8%99%E0%B9%84%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%97%E0%B8%A3%E0%B8%A5%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B8%A3%E0%B9%8C-ESP32-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B9%84%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B9%84%E0%B8%9E%E0%B8%97%E0%B8%AD%E0%B8%99.aspx?no=9786160850112" target="_blank">Order Book</a>
+                </div>
+            </div>
+        ),
+        2: (
+            <div className="space-y-6">
+                {[
+                    { img: "/tii-kittinan-pages/image/rice/ricelogin.png", desc: "Login page to use the Web Application to check rice quality." },
+                    { img: "/tii-kittinan-pages/image/rice/ricesignup.jpg", desc: "Registration page in order to apply for membership in use webapplication." },
+                    { img: "/tii-kittinan-pages/image/rice/ricewebhomepage.jpg", desc: "Home page of the rice quality inspection system." },
+                    { img: "/tii-kittinan-pages/image/rice/riceshowlist.jpg", desc: "The page shows completed items in a table format, with a delete button and a view details button." },
+                    { img: "/tii-kittinan-pages/image/rice/ricewebshowdata.jpg", desc: "The page shows all the detailed information about rice grain size and types." },
+                    { img: "/tii-kittinan-pages/image/rice/ricedetect.jpg", desc: "Picture of the results of successfully detecting rice grains using Yolov8." },
+                    { img: "/tii-kittinan-pages/image/rice/riceposter.jpg", desc: "Poster Project Rice quality inspection system." }
+                ].map((item, idx) => (
+                    <div key={idx} className="flex flex-col items-center space-y-4">
+                        <Image src={item.img} width={600} height={400} className="rounded-xl shadow-lg" alt={`Rice ${idx}`} />
+                        <p className="text-gray-300">{item.desc}</p>
+                    </div>
+                ))}
+                <div className="flex justify-center space-x-4">
+                    <a className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.canva.com/design/DAFrCA-VtpI/ucJqw1aN9QpBXBtTks8_EA/edit" target="_blank">Slide</a>
+                    <a className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://drive.google.com/drive/folders/1JdgM3peBNAMZidzXTHQYGxviwgtFOif6?usp=sharing" target="_blank">Report</a>
+                </div>
+            </div>
+        ),
+        3: (
+            <div className="space-y-6">
+                {[
+                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar.jpg", desc: "The home page of the Health Manage Calendar program with calendar UI." },
+                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar5.jpg", desc: "Setting function page where you can calculate your BMI." },
+                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar6.jpg", desc: "The program can change the background color as the user desires." },
+                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar7.jpg", desc: "To add various activities, you can go to the add activity button." },
+                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar2.jpg", desc: "It adds things that you want to do today." },
+                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar3.jpg", desc: "A page for adding events in advance." },
+                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar8.jpg", desc: "Recorded events can be viewed by pressing the Today button." }
+                ].map((item, idx) => (
+                    <div key={idx} className="flex flex-col items-center space-y-4">
+                        <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`Calendar ${idx}`} />
+                        <p className="text-gray-300">{item.desc}</p>
+                    </div>
+                ))}
+                <div className="flex justify-center space-x-4">
+                    <a className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://docs.google.com/presentation/d/1OgddoFiPq2E9NQHEs3SflncBQDfTPsnSb3zaTQCtD64/edit#slide=id.p" target="_blank">Slide</a>
+                    <a className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://github.com/Gunn-Treepaech/Project-ACP" target="_blank">Github</a>
+                </div>
+            </div>
+        ),
+        4: (
+            <div className="space-y-6">
+                {[
+                    { img: "/tii-kittinan-pages/image/projectclude/projectclude.jpg", desc: "The home page of the web application Our Future Home." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectclude1.jpg", desc: "The form page shows home installment calculations where the user can select 4 banks." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectclude2.jpg", desc: "The web application can add up to 4 form pages to select different banks." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectclude3.jpg", desc: "After calculating, the form displays the results of the loan amount and interest payments." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectclude4.jpg", desc: "The page shows all the details of the Web Application." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectclude5.jpg", desc: "Detailed view of form number two." }
+                ].map((item, idx) => (
+                    <div key={idx} className="flex flex-col items-center space-y-4">
+                        <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`Loan ${idx}`} />
+                        <p className="text-gray-300">{item.desc}</p>
+                    </div>
+                ))}
+                <div className="flex justify-center space-x-4">
+                    <a className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.canva.com/design/DAF-kqRzmuY/5NWAyX3Prsfz19RLp48Y5A/edit" target="_blank">Slide</a>
+                    <a className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://github.com/Gunn-Treepaech/Project_Cloud_App_2023" target="_blank">Github</a>
+                </div>
+            </div>
+        ),
+        5: (
+            <div className="space-y-6">
+                {[
+                    { img: "/tii-kittinan-pages/image/esp32cam/esp32cam-ml1.jpg", desc: "How to connect the ESP32 CAM circuit to the FT232RL FTDI." },
+                    { img: "/tii-kittinan-pages/image/esp32cam/esp32cam-ml2.jpg", desc: "The power supply module provides electrical power to the boards." },
+                    { img: "/tii-kittinan-pages/image/esp32cam/esp32cam-ml3.jpg", desc: "Using it together with Machine Learning to measure the output." }
+                ].map((item, idx) => (
+                    <div key={idx} className="flex flex-col items-center space-y-4">
+                        <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`ESP32 ${idx}`} />
+                        <p className="text-gray-300">{item.desc}</p>
+                    </div>
+                ))}
+                <div className="flex justify-center">
+                    <a className="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.canva.com/design/DAFytnNNnCA/69Y1JNFmQKpUU79uK7wDKA/edit" target="_blank">Slide</a>
+                </div>
+            </div>
+        ),
+        6: (
+            <div className="space-y-6">
+                {[
+                    { img: "/tii-kittinan-pages/image/ics-test/1.jpg", desc: "The home page of the ics application showing a list of restaurants." },
+                    { img: "/tii-kittinan-pages/image/ics-test/2.jpg", desc: "A detail page showing store information and ratings." },
+                    { img: "/tii-kittinan-pages/image/ics-test/3.jpg", desc: "ICS json data file structure." }
+                ].map((item, idx) => (
+                    <div key={idx} className="flex flex-col items-center space-y-4">
+                        <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`ICS ${idx}`} />
+                        <p className="text-gray-300">{item.desc}</p>
+                    </div>
+                ))}
+                <div className="flex justify-center">
+                    <a className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://github.com/kittinan4452/project-test-frontend-ics.git" target="_blank">Github</a>
+                </div>
+            </div>
+        )
+    };
+
     return (
-        <div className="min-w-full font-Kode_Mono">
-           <h1 className="text-5xl text-center text-red-700 mb-6 mt-12  stroke-gray-300">Experiences</h1>
-            <div className="flex flex-wrap md:space-x-5 max-lg:justify-center lg:justify-center lg:space-x-10 xl:justify-start xl:space-x-4 space-y-5 max-md:justify-center max-md:space-y-5 ">
-                <div className="card card-compact  xl:w-96 max-lg:w-80 lg:w-72 md:ml-5 mt-5 shadow-xl bg-[#1D232A] text-white">
-                <figure className="pt-4">
-                    <img width={250} height={330} className="rounded-xl"
-                    src="/tii-kittinan-pages/image/playsmart.jpg"
-                    alt="Shoes" />
-                </figure>
-                <div className="card-body">
-                    <h2 className="card-title justify-center">Internship</h2>
-                    <p className="">Internship experience with playsmart iot and system company that teaches design and installation of iot systems, which has participated in making books on iot system development and has been an assistant training in iot system installation.</p>
-                    <div className="card-actions justify-center">
-                    
-                    <button className="btn btn-primary" onClick={()=>document.getElementById('my_modal_1').showModal()}>Show More</button>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8">
+            <div className="max-w-7xl mx-auto">
+                {/* Header */}
+                <div className="text-center mb-16">
+                    <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 mb-4 font-mono animate-pulse">
+                        Experiences
+                    </h1>
+                    <div className="h-1 w-32 bg-gradient-to-r from-red-500 to-pink-500 mx-auto rounded-full"></div>
+                </div>
+
+                {/* Cards Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {experiences.map((exp, index) => (
+                        <div
+                            key={exp.id}
+                            className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-red-500/20 hover:shadow-xl hover:scale-105"
+                            style={{ animationDelay: `${index * 100}ms` }}
+                        >
+                            {/* Image */}
+                            <div className="relative h-48 overflow-hidden">
+                                <img
+                                    src={exp.image}
+                                    alt={exp.title}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className={`absolute top-4 right-4 p-3 rounded-full bg-gradient-to-r ${exp.color} shadow-lg`}>
+                                    {exp.icon}
+                                </div>
+                            </div>
+
+                            {/* Content */}
+                            <div className="p-6 space-y-4">
+                                <h2 className="text-2xl font-bold text-white font-mono group-hover:text-red-400 transition-colors">
+                                    {exp.title}
+                                </h2>
+                                <p className="text-sm text-red-400 font-mono">{exp.company}</p>
+                                <p className="text-gray-300 text-sm line-clamp-3">{exp.description}</p>
+                                
+                                <button
+                                    onClick={() => setActiveModal(exp.id)}
+                                    className={`w-full py-3 px-6 rounded-lg bg-gradient-to-r ${exp.color} font-mono font-bold hover:shadow-lg hover:scale-105 transition-all duration-300`}
+                                >
+                                    Show More
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Modal */}
+            {activeModal && (
+                <div 
+                    className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
+                    // 🚨 เพิ่ม onClick handler ที่ div backdrop (แต่ต้องระวังไม่ให้คลิกที่ modal content ไปโดน)
+                    onClick={() => setActiveModal(null)} 
+                >
+                    <div 
+                        ref={modalRef} // 🚨 3. กำหนด Ref ให้กับ Modal Content
+                        className="bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-700 shadow-2xl"
+                        onClick={(e) => e.stopPropagation()} // 🚨 4. หยุดการ Propagation (การลอยตัว) ของ event เมื่อคลิกใน Modal Content
+                    >
+                        {/* Modal Header */}
+                        <div className="sticky top-0 bg-gray-800/95 backdrop-blur-sm border-b border-gray-700 p-6 flex justify-between items-center z-10">
+                            <div>
+                                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 font-mono">
+                                    {experiences.find(e => e.id === activeModal)?.title}
+                                </h2>
+                                <p className="text-red-400 font-mono mt-1">
+                                    {experiences.find(e => e.id === activeModal)?.company}
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => setActiveModal(null)}
+                                className="p-2 rounded-full hover:bg-gray-700 transition-colors"
+                            >
+                                <X className="w-6 h-6 text-gray-400 hover:text-white" />
+                            </button>
+                        </div>
+
+                        {/* Modal Content */}
+                        <div className="p-6">
+                            {modalContent[activeModal]}
+                        </div>
                     </div>
                 </div>
-                </div>
-                <div className="card card-compact  xl:w-96 max-lg:w-80 lg:w-72 md:ml-5 shadow-xl bg-[#1D232A] text-white">
-                <figure className="pt-4">
-                    <img width={330} height={330} className="rounded-xl"
-                    src="/tii-kittinan-pages/image/projectrice.jpg"
-                    alt="Shoes" />
-                </figure>
-                <div className="card-body">
-                    <h2 className="card-title justify-center">Rice Quality Inspectione System</h2>
-                    <p>Project Rice Quality Inspectione System is used to check the quality of rice by using Machine Learning and Digital image processing to work together and using a Web Application, using Django Farmwork and TailwindCSS framework to make it beautiful.</p>
-                    <div className="card-actions justify-center">
-                    
-                    <button className="btn btn-primary" onClick={()=>document.getElementById('my_modal_2').showModal()}>Show More</button>
-                    </div>
-                </div>
-                </div>
-                <div className="card card-compact  xl:w-96 max-lg:w-80 lg:w-72 shadow-xl bg-[#1D232A] text-white">
-                <figure className="pt-4">
-                    <img className="h-60 rounded-xl" 
-                    src="/tii-kittinan-pages/image/HealthCalendar/calendar.jpg"
-                    alt="Shoes" />
-                </figure>
-                <div className="card-body">
-                    <h2 className="card-title justify-center">Health Manage Calendar</h2>
-                    <p>Health Manage Calendar is a program that helps in allocating the user's time to make it convenient by being able to add things to the program to allocate the time.</p>
-                    <div className="card-actions justify-center">
-                    <button className="btn btn-primary " onClick={()=>document.getElementById('my_modal_3').showModal()}>Show More</button>
-                    </div>
-                </div>
-                </div>
-                <div className="card card-compact  xl:w-96 max-lg:w-80 lg:w-72 shadow-xl bg-[#1D232A] text-white">
-                <figure className="pt-4">
-                    <Image width={330} height={330} className="rounded-xl"
-                    src="/tii-kittinan-pages/image/projectclude/projectclude.jpg"
-                    alt="Shoes" />
-                </figure>
-                <div className="card-body">
-                    <h2 className="card-title justify-center">Home Loan Simulation Web Application</h2>
-                    <p>Web application simulates home installments 3 years generate monthly reports on repayments, interest payments, principal payments and balance.</p>
-                    <div className="card-actions justify-center">
-                    <button className="btn btn-primary"  onClick={()=>document.getElementById('my_modal_4').showModal()}>Show More</button>
-                    </div>
-                </div>
-                </div>
-                <div className="card card-compact  xl:w-96 max-lg:w-80 lg:w-72 shadow-xl bg-[#1D232A] text-white">
-                <figure className="pt-4">
-                    <img  width={370} height={330} className="rounded-xl"
-                    src="/tii-kittinan-pages/image/esp32cam/esp32cam-ml.jpg"
-                    alt="Shoes" />
-                </figure>
-                <div className="card-body">
-                    <h2 className="card-title justify-center">ESP-32 And MACHINE LEARNING</h2>
-                    <p>Project that brings hardware to work with Machine Learning by working through the ESP32-cam board to increase convenience for users in measuring productivity.</p>
-                    <div className="card-actions justify-center">
-                    <button className="btn btn-primary" onClick={()=>document.getElementById('my_modal_5').showModal()}>Show More</button>
-                    </div>
-                </div>
-                </div>
-                <div className="card card-compact  xl:w-96 max-lg:w-80 lg:w-72 shadow-xl bg-[#1D232A] text-white">
-                <figure className="pt-4">
-                    <img  width={370} height={330} className="rounded-xl"
-                    src="/tii-kittinan-pages/image/ics-test/1.jpg"
-                    alt="Shoes" />
-                </figure>
-                <div className="card-body">
-                    <h2 className="card-title justify-center">Porject-Test-Front-End</h2>
-                    <p>This project is a test project for applying for a Front-end position at ICS company.</p>
-                    <div className="card-actions justify-center">
-                    <button className="btn btn-primary" onClick={()=>document.getElementById('my_modal_6').showModal()}>Show More</button>
-                    </div>
-                </div>
-                </div>
-
-</div>
-<dialog id="my_modal_1" className="modal ">
-  <div className="modal-box w-11/12 max-w-5xl bg-[#1D232A] text-white">
-    <form method="dialog">
-      {/* if there is a button in form, it will close the modal */}
-      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h1 className="font-bold text-2xl text-center text-red-700">Internship </h1>
-    <h1 className="font-bold text-xl text-center">PlaySmart IoT and Systems Company </h1>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <Image src="/tii-kittinan-pages/image/playsmart1.jpg" width={600} height={600} className="rounded-md"  />
-    <p className="text-left">The iot project is implemented using an ESP32 board to control various iot devices. There is a web application to operate the board, which works with a Mysql database and gafana to view data through a dashboard.</p>
-    </div> 
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <div className=""><Internship/></div>
-    <p>Be an assistant in training the iot system, both installation and design using Board ESP32 together with playsmart iot and system company.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <Image src="/tii-kittinan-pages/image/platsmartbook.jpg" width={600} height={600}  />
-    <p>Test, improve, and correct the code examples in the book ‘Developing IoT on ESP32 Microcontroller with MicroPython’ <br/>
-    Order the book at  <a className="btn btn-outline btn-info" href="https://www.se-ed.com/product/%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2-IoT-%E0%B8%9A%E0%B8%99%E0%B9%84%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%97%E0%B8%A3%E0%B8%A5%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B8%A3%E0%B9%8C-ESP32-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B9%84%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B9%84%E0%B8%9E%E0%B8%97%E0%B8%AD%E0%B8%99.aspx?no=9786160850112">Click</a>
-
-    </p>
-    
-
-    </div>
-  </div>
-</dialog>
-<dialog id="my_modal_2" className="modal  ">
-  <div className="modal-box w-11/12 max-w-5xl bg-[#1D232A] text-white">
-    <form method="dialog">
-      {/* if there is a button in form, it will close the modal */}
-      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h1 className="font-bold text-2xl text-center text-red-700">Rice Quality Inspectione System</h1>
-    <h1 className="font-bold text-xl text-center">Senior Project</h1>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <Image src="/tii-kittinan-pages/image/rice/ricelogin.png" width={600} height={600} className="rounded-md"  />
-    <p className="text-left">Login page to use the Web Application to check rice quality.</p>
-    </div> 
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <Image src="/tii-kittinan-pages/image/rice/ricesignup.jpg" width={600} height={600}  />
-    <p>Registration page in order to apply for membership in use webapplication.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <Image src="/tii-kittinan-pages/image/rice/ricewebhomepage.jpg" width={600} height={600}  />
-    <p>Registration page in order to apply for membership in use webapplication.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <Image src="/tii-kittinan-pages/image/rice/riceshowlist.jpg" width={600} height={600}  />
-    <p>The page shows completed items in a table format, with a delete button and a view details button.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <Image src="/tii-kittinan-pages/image/rice/ricewebshowdata.jpg" width={600} height={600}  />
-    <p>The page shows all the detailed information, which tells you the size of the rice grains and also tells you the different types of rice. You can check what percentage of this type of rice is.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <Image src="/tii-kittinan-pages/image/rice/ricedetect.jpg" width={600} height={600}  />
-    <p>Picture of the results of successfully detaching rice grains using Yolov8 and using image processing to measure the size of rice grains. 
-    </p>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <Image src="/tii-kittinan-pages/image/rice/riceposter.jpg" width={600} height={600}  />
-    <p>Poster Project Rice quality inspection system.</p>
-    </div>
-    <div className="space-x-4">
-    <a className="btn btn-outline btn-info" href="https://www.canva.com/design/DAFrCA-VtpI/ucJqw1aN9QpBXBtTks8_EA/edit?utm_content=DAFrCA-VtpI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Slide </a>
-    <a className="btn btn-outline btn-info" href="https://drive.google.com/drive/folders/1JdgM3peBNAMZidzXTHQYGxviwgtFOif6?usp=sharing">Report </a>
-    </div>
-    
-
-    </div>
-  </div>
-</dialog>
-<dialog id="my_modal_3" className="modal  ">
-  <div className="modal-box w-11/12 max-w-5xl bg-[#1D232A] text-white ">
-    <form method="dialog">
-      {/* if there is a button in form, it will close the modal */}
-      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h1 className="font-bold text-2xl text-center text-red-700">Health Manage Calendar</h1>
-    <h1 className="font-bold text-xl text-center">Project Advanced Computer Programming Java language</h1>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/HealthCalendar/calendar.jpg" className="rounded-md"  />
-    <p className="text-left">The home page of the Health Manage Calendar program, which has a calendar to be viewed as a ui and has a button to view what is done today and events to pre-set activities.</p>
-    </div> 
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/HealthCalendar/calendar5.jpg" className="rounded-md"  />
-    <p>Setting function page where you can calculate your BMI and your own figure to manage the user's health by entering height and weight information, pressing save, and being able to set what you want to do by ticking and the program will allocate time for you.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/HealthCalendar/calendar6.jpg" className="rounded-md"  />
-    <p>The program can change the background color as the user desires.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/HealthCalendar/calendar7.jpg" className="rounded-md"  />
-    <p>To add various activities, you can go to the add activity button on the top left. When you press the button, it will display Add regularly and Add specifically Event. You can choose according to your needs.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/HealthCalendar/calendar2.jpg" className="rounded-md"  />
-    <p>It adds things that you want to do today. Users need to fill in things that they want to do. Ready to tell the time and date as desired, then press save the information.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/HealthCalendar/calendar3.jpg" className="rounded-md"  />
-    <p>A page for adding events in advance by allowing users to enter what they want to do in the event field and need to enter the time they want to do it along with the date, month and year according to E.g. Then save. 
-    </p>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/HealthCalendar/calendar8.jpg" className="rounded-md"  />
-    <p>Recorded events can be viewed by pressing the Today button and the Events button will bring up a window.</p>
-    </div>
-    <div className="space-x-4">
-    <a className="btn btn-outline btn-info" href="https://docs.google.com/presentation/d/1OgddoFiPq2E9NQHEs3SflncBQDfTPsnSb3zaTQCtD64/edit#slide=id.p">Slide </a>
-    <a className="btn btn-outline btn-info" href="https://github.com/Gunn-Treepaech/Project-ACP">Github Link</a>
-    </div>
-    
-
-    </div>
-  </div>
-</dialog>
-<dialog id="my_modal_4" className="modal  ">
-  <div className="modal-box w-11/12 max-w-5xl bg-[#1D232A] text-white">
-    <form method="dialog">
-      {/* if there is a button in form, it will close the modal */}
-      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h1 className="font-bold text-2xl text-center text-red-700">Home Loan Simulation Web Application</h1>
-    <h1 className="font-bold text-xl text-center">Project Clude App</h1>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/projectclude/projectclude.jpg" className="rounded-md"  />
-    <p className="text-left">The home page of the web application Our Future Home will have a yellow arrow button that will lead you to it. from calculate the next part.</p>
-    </div> 
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/projectclude/projectclude1.jpg" className="rounded-md"  />
-    <p>The From page shows home installment calculations where the user can select 4 banks, each bank has an MRR value as the bank's standard, and each bank receives API information from the Database.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/projectclude/projectclude2.jpg" className="rounded-md"  />
-    <p>The web application can also add up to 4 form pages to select different banks.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/projectclude/projectclude3.jpg" className="rounded-md"  />
-    <p>After successfully calculating the home installment, the form displays the results of the loan amount and interest payments and the remaining loan balance of each bank and has a button to show additional details.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/projectclude/projectclude4.jpg" className="rounded-md"  />
-    <p>The page shows all the details of the Web Application of from number one.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/projectclude/projectclude5.jpg" className="rounded-md"  />
-    <p>The page shows all the details of the Web Application of from number two. 
-    </p>
-    <div className="space-x-4">
-    <a className="btn btn-outline btn-info" href="https://www.canva.com/design/DAF-kqRzmuY/5NWAyX3Prsfz19RLp48Y5A/edit">Slide </a>
-    <a className="btn btn-outline btn-info" href="https://github.com/Gunn-Treepaech/Project_Cloud_App_2023">Github Link</a>
-    </div>
-    
-
-    </div>
-  </div>
-</dialog>
-<dialog id="my_modal_5" className="modal  ">
-  <div className="modal-box w-11/12 max-w-5xl bg-[#1D232A] text-white ">
-    <form method="dialog">
-      {/* if there is a button in form, it will close the modal */}
-      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h1 className="font-bold text-2xl text-center text-red-700">ESP-32 And MACHINE LEARNING</h1>
-    <h1 className="font-bold text-xl text-center">Wireless Personal Area Networks Project</h1>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/esp32cam/esp32cam-ml1.jpg" className="rounded-md"  />
-    <p className="text-left">How to connect the ESP32 CAM circuit to the FT232RL FTDI 3.3V 5.5V USB to TTL Serial Adapter so that the device can be connected to the computer via UART communication.</p>
-    </div> 
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/esp32cam/esp32cam-ml2.jpg" className="rounded-md"  />
-    <p>The power supply module will be used to provide electrical power to the FT232RL and ESP32-CAM boards. When upload is complete, the code will be displayed videocall.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/esp32cam/esp32cam-ml3.jpg" className="rounded-md"  />
-    <p>When trying to use it together with MACHINE LEARNING, it can be checked. and measure the amount of output obtained.</p>
-    </div>
-    
-    
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <div className="space-x-4">
-    <a className="btn btn-outline btn-info" href="https://www.canva.com/design/DAFytnNNnCA/69Y1JNFmQKpUU79uK7wDKA/edit">Slide </a>
-    </div>
-    
-
-    </div>
-  </div>
-</dialog>
-<dialog id="my_modal_6" className="modal  ">
-  <div className="modal-box w-11/12 max-w-5xl bg-[#1D232A] text-white ">
-    <form method="dialog">
-      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h1 className="font-bold text-2xl text-center text-red-700">Porject-Test-Front-End</h1>
-    <h1 className="font-bold text-xl text-center">Frontend Job Application Test Project</h1>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/ics-test/1.jpg" className="rounded-md"  />
-    <p className="text-left">The home page of the ics application, which shows a list of restaurants where you can search by name and can display results in the screen size according to the device.</p>
-    </div> 
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/ics-test/2.jpg" className="rounded-md"  />
-    <p>A detail page that shows the store's photo, store name, store rating, and store hours of operation.</p>
-    </div>
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <img src="/tii-kittinan-pages/image/ics-test/3.jpg" className="rounded-md"  />
-    <p>ICS json data file</p>
-    </div>
-    
-    
-    <div className="justify-center flex flex-col items-center space-y-4 mt-5">
-    <div className="space-x-4">
-    <a className="btn btn-outline btn-info" href="https://github.com/kittinan4452/project-test-frontend-ics.git">Github </a>
-    </div>
-    
-
-    </div>
-  </div>
-</dialog> 
-
+            )}
         </div>
-    )
+    );
 }
