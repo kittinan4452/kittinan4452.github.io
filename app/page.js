@@ -22,18 +22,13 @@ export default function Home() {
     }
   }, []);
   return (
-    <div className="min-h-screen bg-[#181818] py-10 px-4">
+    <div className="min-h-[800px] snap-mandatory snap-y bg-[#181818] py-10 px-4">
       {/* Profile Section */}
       <section
         id="contentinfo"
-        className="flex flex-col md:flex-row items-center justify-center gap-6 mx-auto max-w-screen-xl  rounded-2xl shadow-2xl mb-10"
+        className="mx-auto max-w-screen-xl  rounded-2xl shadow-2xl mb-10"
       >
-        {/* <div className="w-full md:w-1/2">
-          <Imageprofile />
-        </div> */}
-        <div className="w-full">
           <Yourself />
-        </div>
       </section>
 
       {/* About & Skills Section */}
@@ -54,7 +49,7 @@ export default function Home() {
       {/* Experiences Section */}
       <section
         id="experiences"
-        className="mx-auto max-w-screen-xl  rounded-2xl shadow-2xl"
+        className="mx-auto max-w-screen-xl  rounded-2xl shadow-2xl mb-10"
       >
         <Experiences />
       </section>

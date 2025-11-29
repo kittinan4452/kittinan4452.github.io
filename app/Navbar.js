@@ -65,15 +65,15 @@ const handleScrollToSection = (id) => {
   ];
 
   return (
-    <nav className="fixed w-full z-50 top-0 left-0 transition-all duration-300">
+    <nav >
       <div
-        className={`transition-all duration-300 ${
+        className={`fixed w-full z-50 top-0 left-0 transition-all duration-300   ${
           scrolled
             ? "bg-black/80 backdrop-blur-md border-b border-red-600/20 shadow-lg shadow-red-600/5"
             : "bg-transparent backdrop-blur-sm"
         }`}
       >
-        <div className="flex items-center justify-between mx-auto px-6 py-4 max-w-7xl">
+        <div className="flex items-center justify-between mx-auto px-6 py-4  max-w-screen-xl">
           {/* Logo */}
           <a href="/" className="group relative">
             <div className="flex items-center">
@@ -83,7 +83,7 @@ const handleScrollToSection = (id) => {
               <h1 className="font-mono text-3xl font-bold text-red-600 group-hover:text-red-500 transition-colors duration-300 mx-1">
                 Tii
               </h1>
-              <span className="font-mono text-3xl font-bold text-white group-hover:text-gray-300 transition-colors duration-300">
+              <span className="font-mono text-3xl font-bold text-white group-hover:text-gray-300 transition-colors duration-300 max-md:hidden">
                 -Kittinan
               </span>
               <span className="font-mono text-3xl font-bold text-red-600 group-hover:text-red-500 transition-colors duration-300 ml-1">

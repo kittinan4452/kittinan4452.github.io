@@ -118,9 +118,9 @@ export default function Experiences() {
                         <p className="text-gray-300">{item.desc}</p>
                     </div>
                 ))}
-                <div className="flex justify-center space-x-4">
-                    <a className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.canva.com/design/DAFrCA-VtpI/ucJqw1aN9QpBXBtTks8_EA/edit" target="_blank">Slide</a>
-                    <a className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://drive.google.com/drive/folders/1JdgM3peBNAMZidzXTHQYGxviwgtFOif6?usp=sharing" target="_blank">Report</a>
+                <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                    <a className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base  bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.canva.com/design/DAFrCA-VtpI/ucJqw1aN9QpBXBtTks8_EA/edit" target="_blank">Slide</a>
+                    <a className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base  bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://drive.google.com/drive/folders/1JdgM3peBNAMZidzXTHQYGxviwgtFOif6?usp=sharing" target="_blank">Report</a>
                 </div>
             </div>
         ),
@@ -204,11 +204,11 @@ export default function Experiences() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 sm:p-6 lg:p-8">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 mb-4 font-mono animate-pulse">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 mb-4 font-mono animate-pulse">
                         Experiences
                     </h1>
                     <div className="h-1 w-32 bg-gradient-to-r from-red-500 to-pink-500 mx-auto rounded-full"></div>
@@ -236,7 +236,7 @@ export default function Experiences() {
 
                             {/* Content */}
                             <div className="p-6 space-y-4">
-                                <h2 className="text-2xl font-bold text-white font-mono group-hover:text-red-400 transition-colors">
+                                <h2 className="text-lg sm:text-xl lg:text-2xl break-words font-bold text-white font-mono group-hover:text-red-400 transition-colors">
                                     {exp.title}
                                 </h2>
                                 <p className="text-sm text-red-400 font-mono">{exp.company}</p>
@@ -267,9 +267,9 @@ export default function Experiences() {
                         onClick={(e) => e.stopPropagation()} // 🚨 4. หยุดการ Propagation (การลอยตัว) ของ event เมื่อคลิกใน Modal Content
                     >
                         {/* Modal Header */}
-                        <div className="sticky top-0 bg-gray-800/95 backdrop-blur-sm border-b border-gray-700 p-6 flex justify-between items-center z-10">
-                            <div>
-                                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 font-mono">
+                        <div className="sticky top-0 bg-gray-800/95 backdrop-blur-sm border-b border-gray-700 p-6  z-10  sm:p-6 flex justify-between items-start gap-4">
+                            <div className='flex-1 min-w-0'>
+                                <h2 className="text-xl sm:text-2xl lg:text-3xl break-words font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 font-mono">
                                     {experiences.find(e => e.id === activeModal)?.title}
                                 </h2>
                                 <p className="text-red-400 font-mono mt-1">
@@ -280,7 +280,7 @@ export default function Experiences() {
                                 onClick={() => setActiveModal(null)}
                                 className="p-2 rounded-full hover:bg-gray-700 transition-colors"
                             >
-                                <X className="w-6 h-6 text-gray-400 hover:text-white" />
+                                <X className="w-5 h-5 sm:w-6 sm:h-6" />
                             </button>
                         </div>
 
