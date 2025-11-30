@@ -1,6 +1,7 @@
 'use client';
 import { SiAngular, SiBootstrap, SiCss3, SiDialogflow, SiDjango, SiDocker, SiFirebase, SiFlask, SiGithub, SiGo, SiHtml5, SiJavascript, SiLaravel, SiMongodb, SiMui, SiMysql, SiNestjs, SiNextdotjs, SiNodedotjs, SiPhp, SiPostgresql, SiPostman, SiPython, SiReact, SiTailwindcss, SiTypescript, SiUbuntu } from "react-icons/si";
-import { FaJava } from "react-icons/fa";        
+import { FaGitlab, FaJava, FaJenkins } from "react-icons/fa"; 
+import { } from "react-icons/fa";
 
 export default function Skills() {
     
@@ -53,8 +54,12 @@ export default function Skills() {
                 { name: "Docker", icon: <SiDocker />, color: "text-blue-500" },
                 { name: "Postman", icon: <SiPostman />, color: "text-orange-500" },
                 { name: "Dialogflow", icon: <SiDialogflow />, color: "text-orange-400" },
-                { name: "GitHub", icon: <SiGithub />, color: "text-white" },
                 { name: "Ubuntu", icon: <SiUbuntu />, color: "text-orange-600" },
+                { name: "GitHub", icon: <SiGithub />, color: "text-white" },     
+                { name: "GitLab", icon: <FaGitlab />, color: "text-orange-600" },
+                { name: "Jenkins", icon: <FaJenkins />, color: "text-red-600" },
+
+                
             ]
         }
     ];
