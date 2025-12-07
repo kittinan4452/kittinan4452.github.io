@@ -4,7 +4,13 @@ import { FaGitlab, FaJava, FaJenkins } from "react-icons/fa";
 import { } from "react-icons/fa";
 
 export default function Skills() {
-    
+
+    // Generate deterministic proficiency values to avoid hydration mismatch
+    const getProficiencyValue = (categoryIndex) => {
+        const baseValues = [85, 92, 88, 79, 95, 83, 91, 87];
+        return baseValues[categoryIndex % baseValues.length];
+    };
+
     const skillCategories = [
         {
             title: "Front-end",
@@ -64,61 +70,119 @@ export default function Skills() {
         }
     ];
 
-    // 🚨 ค่าเริ่มต้นของ Animation Delay
-    let initialDelay = 0.5; // เริ่มต้นที่ 0.5s หลังจาก Header
-    
+    // 🚨 Modern Skills Component with enhanced UI effects
+
     return (
-        <div id="skills" className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8">
-            <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <div className="text-center mb-16 opacity-0 animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-                    <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 mb-4 font-mono">
-                        Skills
+        <div id="skills" className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8 overflow-hidden">
+
+            {/* Background decorative elements */}
+            <div className="absolute top-10 right-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 left-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+
+            <div className="max-w-7xl mx-auto relative z-10">
+                {/* Modern Header with animated gradient */}
+                <div className="text-center mb-16 opacity-0 animate-text-reveal" style={{ animationDelay: '0.2s' }}>
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold gradient-animated-strong text-transparent bg-clip-text mb-6 font-mono"
+                    style={{
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                    }}>
+                        Technical Skills
                     </h1>
-                    <div className="h-1 w-32 bg-gradient-to-r from-red-500 to-pink-500 mx-auto rounded-full"></div>
+                    <div className="flex items-center justify-center gap-4">
+                        <div className="h-1 w-24 bg-gradient-to-r from-transparent to-red-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                        <div className="h-1 w-24 bg-gradient-to-r from-red-500 to-transparent rounded-full"></div>
+                    </div>
+                    <p className="mt-4 text-gray-400 text-lg font-mono">Technologies I work with</p>
                 </div>
 
-                {/* Categories Grid */}
+                {/* Modern Categories Grid with glassmorphism */}
                 <div className="grid md:grid-cols-2 gap-8">
                     {skillCategories.map((category, index) => {
-                        const categoryDelay = initialDelay + (index * 0.2); // หน่วงเวลาหมวดหมู่ (0.5s, 0.7s, 0.9s, 1.1s)
-                        
-                        return (
-                            <div 
-                                key={index}
-                                // 🚨 เพิ่ม Animation ให้กับ Category Card
-                                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-red-500/20 opacity-0 animate-slide-in-up"
-                                style={{ animationDelay: `${categoryDelay}s` }} // ใช้ delay ที่คำนวณได้
-                            >
-                                <h2 className={`text-3xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r ${category.color} font-mono text-center`}>
-                                    {category.title}
-                                </h2>
+                        const categoryDelay = 0.5 + (index * 0.15); // Staggered animation
 
-                                <div className="flex flex-wrap justify-center gap-6">
+                        return (
+                            <div
+                                key={index}
+                                className="group glass-morphism-dark rounded-3xl p-8 hover-lift opacity-0 animate-card-entrance border border-white/10 hover:border-red-500/30 transition-all duration-500"
+                                style={{ animationDelay: `${categoryDelay}s` }}
+                            >
+                                {/* Category Header with modern styling */}
+                                <div className="text-center mb-10">
+                                    <div className={`inline-flex items-center gap-4 px-8 py-4 rounded-2xl bg-gradient-to-r ${category.color} bg-opacity-20 border-2 border-white/30 mb-4 shadow-lg backdrop-blur-sm`}>
+                                        <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${category.color} animate-pulse shadow-lg`}></div>
+                                        <h2 className={`text-2xl md:text-3xl font-bold text-white font-mono drop-shadow-lg`}>
+                                            {category.title}
+                                        </h2>
+                                    </div>
+                                </div>
+
+                                {/* Modern Skills Grid with enhanced hover effects */}
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                                     {category.skills.map((skill, idx) => {
-                                        // 🚨 คำนวณ delay สำหรับแต่ละ skill item
-                                        const skillDelay = categoryDelay + 0.1 + (idx * 0.05); 
+                                        const skillDelay = categoryDelay + 0.1 + (idx * 0.03);
 
                                         return (
-                                            <div 
+                                            <div
                                                 key={idx}
-                                                // 🚨 เพิ่ม Animation ให้กับ Skill Item
-                                                className="group flex flex-col items-center justify-center p-4 bg-gray-900/50 rounded-xl hover:bg-gray-700 transition-all duration-300 w-24 h-24 hover:-translate-y-2 cursor-pointer border border-gray-700/50 hover:border-gray-500 opacity-0 animate-slide-in-up"
+                                                className="group relative flex flex-col items-center justify-center p-4 glass-morphism rounded-2xl hover-lift cursor-pointer border border-white/10 hover:border-white/20 opacity-0 animate-card-entrance transition-all duration-300"
                                                 style={{ animationDelay: `${skillDelay}s` }}
                                             >
-                                                <div className={`text-4xl mb-2 transition-transform duration-300 group-hover:scale-110 ${skill.color}`}>
+                                                {/* Hover glow effect */}
+                                                <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-pink-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                                                {/* Skill icon with enhanced effects */}
+                                                <div className={`text-3xl mb-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 ${skill.color} relative z-10`}>
                                                     {skill.icon}
                                                 </div>
-                                                <span className="text-xs text-gray-400 font-mono group-hover:text-white transition-colors">
+
+                                                {/* Skill name with modern typography */}
+                                                <span className="text-sm text-gray-300 font-mono group-hover:text-white font-semibold transition-colors duration-300 relative z-10 text-center drop-shadow">
                                                     {skill.name}
                                                 </span>
+
+                                                {/* Subtle particle effect on hover */}
+                                                <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                                                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping"></div>
+                                                    <div className="absolute -bottom-1 -left-1 w-1 h-1 bg-red-400 rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{ animationDelay: '0.5s' }}></div>
+                                                </div>
                                             </div>
                                         );
                                     })}
                                 </div>
+
+                                {/* Category progress indicator */}
+                                <div className="mt-6 pt-6 border-t border-white/20">
+                                    <div className="flex items-center justify-between text-sm text-gray-300 font-mono mb-3">
+                                        <span className="text-red-400 font-semibold">Proficiency</span>
+                                        <span className="text-white font-bold bg-gradient-to-r from-red-500/20 to-pink-500/20 px-2 py-1 rounded">
+                                            {getProficiencyValue(index)}%
+                                        </span>
+                                    </div>
+                                    <div className="relative h-3 bg-gray-900/50 rounded-full overflow-hidden border border-white/10">
+                                        <div
+                                            className={`absolute top-0 left-0 h-full bg-gradient-to-r ${category.color} rounded-full animate-pulse shadow-lg`}
+                                            style={{ width: `${getProficiencyValue(index)}%` }}
+                                        >
+                                            <div className="h-full bg-white/20 rounded-full animate-pulse"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         );
                     })}
+                </div>
+
+                {/* Floating action hint */}
+                <div className="text-center mt-16 opacity-0 animate-text-reveal" style={{ animationDelay: '2s' }}>
+                    <p className="text-gray-500 text-sm font-mono">
+                        <span className="inline-flex items-center gap-2 px-4 py-2 glass-morphism rounded-full">
+                            <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                            Hover over skills to see effects
+                        </span>
+                    </p>
                 </div>
             </div>
         </div>

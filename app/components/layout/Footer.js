@@ -3,7 +3,9 @@ import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Footer() {
-    
+    // Use a fixed year to avoid hydration mismatch, or calculate it safely
+    const currentYear = 2024; // Update this each year or use a more robust method
+
     const socialLinks = [
         { icon: faGithub, href: "https://github.com/kittinan4452", label: "GitHub" },
         { icon: faYoutube, href: "https://www.youtube.com/@tiigamingth945", label: "YouTube" },
@@ -24,7 +26,7 @@ export default function Footer() {
                         <div className="flex items-center space-x-3">
                             <FontAwesomeIcon icon={faCode} className="w-6 h-6 text-red-500" /> 
                             <p className="text-lg md:text-xl text-white font-semibold">
-                                RESUME KITTINAN © {new Date().getFullYear()} 
+                                RESUME KITTINAN © {currentYear} 
                             </p>
                         </div>
                         

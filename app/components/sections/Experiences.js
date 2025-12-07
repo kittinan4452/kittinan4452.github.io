@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react'; // 🚨 Import useRef และ useEffect
-import { Briefcase, Code, Award, Cpu, Calendar, Home, X } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Briefcase, Code, Award, Cpu, Calendar, Home, X, ExternalLink, Github } from 'lucide-react';
 import Image from 'next/image';
+import { useIntersectionObserver, useStaggeredIntersection } from '../../hooks/useIntersectionObserver';
 
 export default function Experiences() {
     const [activeModal, setActiveModal] = useState(null);
@@ -203,90 +204,168 @@ export default function Experiences() {
         )
     };
 
+    // Use Intersection Observer for header animation
+    const headerRef = useIntersectionObserver('animate-text-reveal', { threshold: 0.1 });
+    const cardRefs = useStaggeredIntersection(experiences.length, 'animate-card-entrance', 150);
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 sm:p-6 lg:p-8">
-            <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <div className="text-center mb-16">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 mb-4 font-mono animate-pulse">
-                        Experiences
+        <div id="experiences" className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 sm:p-6 lg:p-8 overflow-hidden">
+
+            {/* Background decorative elements */}
+            <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
+            <div className="absolute bottom-20 right-20 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
+
+            <div className="max-w-7xl mx-auto relative z-10">
+                {/* Modern Header with enhanced animations */}
+                <div ref={headerRef} className="text-center mb-20 opacity-0">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-animated-strong text-transparent bg-clip-text mb-8 font-mono"
+                    style={{
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                    }}>
+                        Projects & Experiences
                     </h1>
-                    <div className="h-1 w-32 bg-gradient-to-r from-red-500 to-pink-500 mx-auto rounded-full"></div>
+                    <div className="flex items-center justify-center gap-6">
+                        <div className="h-1 w-32 bg-gradient-to-r from-transparent to-red-500 rounded-full"></div>
+                        <div className="flex gap-2">
+                            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                            <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                        </div>
+                        <div className="h-1 w-32 bg-gradient-to-r from-red-500 to-transparent rounded-full"></div>
+                    </div>
+                    <p className="mt-6 text-gray-400 text-lg font-mono">My journey through code and innovation</p>
                 </div>
 
-                {/* Cards Grid */}
+                {/* Modern Cards Grid with glassmorphism */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {experiences.map((exp, index) => (
                         <div
                             key={exp.id}
-                            className="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-red-500/20 hover:shadow-xl hover:scale-105"
-                            style={{ animationDelay: `${index * 100}ms` }}
+                            ref={el => cardRefs[index] = el}
+                            className="group glass-morphism-dark rounded-3xl overflow-hidden hover-lift cursor-pointer border border-white/10 hover:border-red-500/30 transition-all duration-500 opacity-0"
+                            onClick={() => setActiveModal(exp.id)}
                         >
-                            {/* Image */}
-                            <div className="relative h-48 overflow-hidden">
+                            {/* Enhanced Image Section with overlay effect */}
+                            <div className="relative h-56 overflow-hidden">
                                 <img
                                     src={exp.image}
                                     alt={exp.title}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                 />
-                                <div className={`absolute top-4 right-4 p-3 rounded-full bg-gradient-to-r ${exp.color} shadow-lg`}>
+
+                                {/* Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
+
+                                {/* Floating Icon */}
+                                <div className={`absolute top-6 right-6 p-4 rounded-full bg-gradient-to-r ${exp.color} shadow-2xl hover-lift glow-red-hover`}>
                                     {exp.icon}
+                                </div>
+
+                                {/* Category Badge */}
+                                <div className="absolute top-6 left-6">
+                                    <span className={`px-3 py-1 rounded-full text-xs font-mono glass-morphism border border-white/20`}>
+                                        {exp.company}
+                                    </span>
                                 </div>
                             </div>
 
-                            {/* Content */}
-                            <div className="p-6 space-y-4">
-                                <h2 className="text-lg sm:text-xl lg:text-2xl break-words font-bold text-white font-mono group-hover:text-red-400 transition-colors">
-                                    {exp.title}
-                                </h2>
-                                <p className="text-sm text-red-400 font-mono">{exp.company}</p>
-                                <p className="text-gray-300 text-sm line-clamp-3">{exp.description}</p>
-                                
+                            {/* Enhanced Content Section */}
+                            <div className="p-8 space-y-6">
+                                <div className="space-y-3">
+                                    <h2 className="text-xl sm:text-2xl font-bold text-white font-mono group-hover:gradient-text-red group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
+                                        {exp.title}
+                                    </h2>
+                                    <p className="text-sm text-red-400 font-mono flex items-center gap-2">
+                                        <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
+                                        {exp.company}
+                                    </p>
+                                </div>
+
+                                <p className="text-gray-300 text-sm leading-relaxed line-clamp-3 font-mono">
+                                    {exp.description}
+                                </p>
+
+                                {/* Modern CTA Button */}
                                 <button
-                                    onClick={() => setActiveModal(exp.id)}
-                                    className={`w-full py-3 px-6 rounded-lg bg-gradient-to-r ${exp.color} font-mono font-bold hover:shadow-lg hover:scale-105 transition-all duration-300`}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setActiveModal(exp.id);
+                                    }}
+                                    className={`group/btn w-full py-4 px-6 rounded-2xl bg-gradient-to-r ${exp.color} font-mono font-bold hover-lift magnetic-btn transition-all duration-300 shadow-lg hover:shadow-2xl border border-white/20 hover:border-white/40`}
                                 >
-                                    Show More
+                                    <span className="flex items-center justify-center gap-3 relative z-10">
+                                        <span>View Details</span>
+                                        <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                                    </span>
                                 </button>
+
+                                {/* Hover Effect Particles */}
+                                <div className="absolute inset-0 pointer-events-none">
+                                    <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping"></div>
+                                    <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-red-400 rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{ animationDelay: '0.3s' }}></div>
+                                    <div className="absolute bottom-1/4 left-1/3 w-1 h-1 bg-pink-400 rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{ animationDelay: '0.6s' }}></div>
+                                </div>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
 
-            {/* Modal */}
+            {/* Enhanced Modal with modern UI */}
             {activeModal && (
-                <div 
-                    className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
-                    // 🚨 เพิ่ม onClick handler ที่ div backdrop (แต่ต้องระวังไม่ให้คลิกที่ modal content ไปโดน)
-                    onClick={() => setActiveModal(null)} 
+                <div
+                    className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-fade-in"
+                    onClick={() => setActiveModal(null)}
                 >
-                    <div 
-                        ref={modalRef} // 🚨 3. กำหนด Ref ให้กับ Modal Content
-                        className="bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-gray-700 shadow-2xl"
-                        onClick={(e) => e.stopPropagation()} // 🚨 4. หยุดการ Propagation (การลอยตัว) ของ event เมื่อคลิกใน Modal Content
+                    <div
+                        ref={modalRef}
+                        className="glass-morphism-dark rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-hidden border border-white/20 shadow-2xl animate-card-entrance"
+                        onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Modal Header */}
-                        <div className="sticky top-0 bg-gray-800/95 backdrop-blur-sm border-b border-gray-700 p-6  z-10  sm:p-6 flex justify-between items-start gap-4">
+                        {/* Enhanced Modal Header */}
+                        <div className="sticky top-0 glass-morphism-dark border-b border-white/10 p-6 sm:p-8 flex justify-between items-center gap-4 z-10">
                             <div className='flex-1 min-w-0'>
-                                <h2 className="text-xl sm:text-2xl lg:text-3xl break-words font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 font-mono">
+                                <h2 className="text-2xl sm:text-3xl lg:text-4xl break-words font-bold gradient-animated-strong text-transparent bg-clip-text font-mono"
+                                style={{
+                                    WebkitBackgroundClip: 'text',
+                                    backgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent'
+                                }}>
                                     {experiences.find(e => e.id === activeModal)?.title}
                                 </h2>
-                                <p className="text-red-400 font-mono mt-1">
+                                <p className="text-red-400 font-mono mt-2 text-lg flex items-center gap-2">
+                                    <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
                                     {experiences.find(e => e.id === activeModal)?.company}
                                 </p>
                             </div>
                             <button
                                 onClick={() => setActiveModal(null)}
-                                className="p-2 rounded-full hover:bg-gray-700 transition-colors"
+                                className="p-3 rounded-full glass-morphism hover-lift border border-white/20 hover:border-red-500/50 transition-all duration-300 group"
                             >
-                                <X className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 group-hover:text-red-400 transition-colors" />
                             </button>
                         </div>
 
-                        {/* Modal Content */}
-                        <div className="p-6">
-                            {modalContent[activeModal]}
+                        {/* Enhanced Modal Content */}
+                        <div className="p-6 sm:p-8 overflow-y-auto max-h-[calc(90vh-120px)]">
+                            <div className="space-y-8 animate-text-reveal">
+                                {modalContent[activeModal]}
+                            </div>
+                        </div>
+
+                        {/* Modal Footer */}
+                        <div className="glass-morphism-dark border-t border-white/10 p-6">
+                            <div className="flex items-center justify-between">
+                                <p className="text-sm text-gray-400 font-mono">Press ESC or click outside to close</p>
+                                <button
+                                    onClick={() => setActiveModal(null)}
+                                    className="px-6 py-3 bg-gradient-to-r from-red-600 to-pink-600 text-white font-mono font-bold rounded-full hover-lift magnetic-btn transition-all duration-300"
+                                >
+                                    Close
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

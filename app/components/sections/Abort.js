@@ -4,22 +4,28 @@ import { useState, useEffect } from 'react';
 import { User, Cake, Calendar, Heart, Flag, GraduationCap } from 'lucide-react';
 
 export default function About() {
-    const [age, setAge] = useState(0);
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        // คำนวณอายุอัตโนมัติ
+    // Calculate age deterministically to avoid hydration mismatch
+    const calculateAge = () => {
         const birthDate = new Date('2001-09-19');
         const today = new Date();
         let calculatedAge = today.getFullYear() - birthDate.getFullYear();
         const monthDiff = today.getMonth() - birthDate.getMonth();
-        
+
         if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
             calculatedAge--;
         }
-        
-        setAge(calculatedAge);
-        
+
+        return calculatedAge;
+    };
+
+    const [age, setAge] = useState(() => calculateAge());
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        // Ensure age is consistent on client
+        const clientAge = calculateAge();
+        setAge(clientAge);
+
         // Animation on mount
         setTimeout(() => setIsVisible(true), 100);
     }, []);
@@ -42,7 +48,13 @@ export default function About() {
                 
                 {/* Header */}
                 <div className="text-center pt-8 pb-12"> {/* 🚨 ปรับ padding ด้านบน/ล่าง */}
-                    <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 mb-4 font-mono animate-pulse animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
+                    <h1 className="text-6xl font-bold gradient-text-red text-transparent bg-clip-text mb-4 font-mono animate-pulse animate-slide-in-up"
+                    style={{
+                        animationDelay: '0.2s',
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent'
+                    }}>
                         About Me
                     </h1>
                     <div className="h-1 w-32 bg-gradient-to-r from-red-500 to-pink-500 mx-auto rounded-full"></div>
