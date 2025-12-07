@@ -1,6 +1,6 @@
 'use client';
 import { Download, ChevronsDown } from 'lucide-react'; 
-import Imageprofile from "./Imageprofire"; 
+import Imageprofile from "../ui/Imageprofire"; 
 
 export default function Yourself() {
 

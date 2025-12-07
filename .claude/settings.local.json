@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(move \"app\\componen\\Abort.js\" \"app\\components\\sections\"\" && move \"appcomponenExperiences.js\" \"appcomponentssections\"\")",
+      "Bash(move \"app\\componen\\Skills.js\" \"app\\components\\sections\"\" && move \"appcomponenYourself.js\" \"appcomponentssections\"\")",
+      "Bash(mv:*)",
+      "Bash(rmdir:*)",
+      "Bash(npm run build:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

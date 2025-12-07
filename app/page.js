@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import Imageprofile from "./componen/Imageprofire";
-import Yourself from "./componen/Yourself";
-import Abort from "./componen/Abort";
-import Skills from "./componen/Skills";
-import Experiences from "./componen/Experiences";
+import Imageprofile from "./components/ui/Imageprofire";
+import Yourself from "./components/sections/Yourself";
+import Abort from "./components/sections/Abort";
+import Skills from "./components/sections/Skills";
+import Experiences from "./components/sections/Experiences";
 import { useEffect } from "react"; // นำเข้า useEffect
 export default function Home() {
   // 💡 โค้ดสำหรับ Scroll เมื่อโหลดหน้าครั้งแรก ที่คุณใส่เพิ่มเข้าไป
