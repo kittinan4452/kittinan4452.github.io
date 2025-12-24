@@ -63,7 +63,7 @@ export default function Experiences() {
             id: 4,
             title: "Home Loan Simulation",
             company: "Cloud App Project",
-            image: "/tii-kittinan-pages/image/projectclude/projectclude.jpg",
+            image: "/tii-kittinan-pages/image/projectclude/projectcloud.png",
             description: "Web application simulates home installments 3 years generate monthly reports on repayments, interest payments, principal payments and balance.",
             icon: <Home className="w-6 h-6" />,
             color: "from-orange-500 to-red-500"
@@ -150,12 +150,15 @@ export default function Experiences() {
         4: (
             <div className="space-y-6">
                 {[
-                    { img: "/tii-kittinan-pages/image/projectclude/projectclude.jpg", desc: "The home page of the web application Our Future Home." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectclude1.jpg", desc: "The form page shows home installment calculations where the user can select 4 banks." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectclude2.jpg", desc: "The web application can add up to 4 form pages to select different banks." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectclude3.jpg", desc: "After calculating, the form displays the results of the loan amount and interest payments." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectclude4.jpg", desc: "The page shows all the details of the Web Application." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectclude5.jpg", desc: "Detailed view of form number two." }
+                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud.png", desc: "The home page of the web application Our Future Home." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud2.png", desc: "The form page shows home installment calculations where the user can select 4 banks." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud3.png", desc: "The web application can add up to 4 form pages to select different banks." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud4.png", desc: "After calculating, the form displays the results of the loan amount and interest payments." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud5.png", desc: "The page shows all the details of the Web Application." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud6.png", desc: "Detailed view of form number two." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud7.png", desc: "Monthly repayment schedule view with detailed breakdown." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud8.png", desc: "Interest calculation summary and principal payment details." },
+                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud9.png", desc: "Balance overview and remaining payment information." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
                         <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`Loan ${idx}`} />
