@@ -36,7 +36,7 @@ export default function Experiences() {
             id: 1,
             title: "Internship",
             company: "PlaySmart IoT and Systems",
-            image: "/tii-kittinan-pages/image/playsmart.jpg",
+            image: "/image/playsmart.jpg",
             description: "Internship experience with playsmart iot and system company that teaches design and installation of iot systems, which has participated in making books on iot system development and has been an assistant training in iot system installation.",
             icon: <Briefcase className="w-6 h-6" />,
             color: "from-blue-500 to-cyan-500"
@@ -45,7 +45,7 @@ export default function Experiences() {
             id: 2,
             title: "Rice Quality Inspection System",
             company: "Senior Project",
-            image: "/tii-kittinan-pages/image/projectrice.jpg",
+            image: "/image/projectrice.jpg",
             description: "Project Rice Quality Inspection System is used to check the quality of rice by using Machine Learning and Digital image processing to work together and using a Web Application, using Django Framework and TailwindCSS framework to make it beautiful.",
             icon: <Award className="w-6 h-6" />,
             color: "from-green-500 to-emerald-500"
@@ -54,7 +54,7 @@ export default function Experiences() {
             id: 3,
             title: "Health Manage Calendar",
             company: "Advanced Computer Programming",
-            image: "/tii-kittinan-pages/image/HealthCalendar/calendar.jpg",
+            image: "/image/HealthCalendar/calendar.jpg",
             description: "Health Manage Calendar is a program that helps in allocating the user's time to make it convenient by being able to add things to the program to allocate the time.",
             icon: <Calendar className="w-6 h-6" />,
             color: "from-purple-500 to-pink-500"
@@ -63,7 +63,7 @@ export default function Experiences() {
             id: 4,
             title: "Home Loan Simulation",
             company: "Cloud App Project",
-            image: "/tii-kittinan-pages/image/projectclude/projectcloud.png",
+            image: "/image/projectclude/projectcloud.png",
             description: "Web application simulates home installments 3 years generate monthly reports on repayments, interest payments, principal payments and balance.",
             icon: <Home className="w-6 h-6" />,
             color: "from-orange-500 to-red-500"
@@ -72,7 +72,7 @@ export default function Experiences() {
             id: 5,
             title: "ESP-32 And Machine Learning",
             company: "Wireless Personal Area Networks",
-            image: "/tii-kittinan-pages/image/esp32cam/esp32cam-ml.jpg",
+            image: "/image/esp32cam/esp32cam-ml.jpg",
             description: "Project that brings hardware to work with Machine Learning by working through the ESP32-cam board to increase convenience for users in measuring productivity.",
             icon: <Cpu className="w-6 h-6" />,
             color: "from-yellow-500 to-orange-500"
@@ -81,7 +81,7 @@ export default function Experiences() {
             id: 6,
             title: "Project-Test-Front-End",
             company: "Frontend Job Application",
-            image: "/tii-kittinan-pages/image/ics-test/1.jpg",
+            image: "/image/ics-test/1.jpg",
             description: "This project is a test project for applying for a Front-end position at ICS company.",
             icon: <Code className="w-6 h-6" />,
             color: "from-indigo-500 to-purple-500"
@@ -93,11 +93,11 @@ export default function Experiences() {
         1: (
             <div className="space-y-6">
                 <div className="flex flex-col items-center space-y-4">
-                    <Image src="/tii-kittinan-pages/image/playsmart1.jpg" width={600} height={400} className="rounded-xl shadow-lg" alt="Internship" />
+                    <Image src="/image/playsmart1.jpg" width={600} height={400} className="rounded-xl shadow-lg" alt="Internship" />
                     <p className="text-gray-300">The iot project is implemented using an ESP32 board to control various iot devices. There is a web application to operate the board, which works with a Mysql database and grafana to view data through a dashboard.</p>
                 </div>
                 <div className="flex flex-col items-center space-y-4">
-                    <Image src="/tii-kittinan-pages/image/platsmartbook.jpg" width={600} height={400} className="rounded-xl shadow-lg" alt="Book" />
+                    <Image src="/image/platsmartbook.jpg" width={600} height={400} className="rounded-xl shadow-lg" alt="Book" />
                     <p className="text-gray-300">Test, improve, and correct the code examples in the book 'Developing IoT on ESP32 Microcontroller with MicroPython'</p>
                     <a className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.se-ed.com/product/%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2-IoT-%E0%B8%9A%E0%B8%99%E0%B9%84%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%97%E0%B8%A3%E0%B8%A5%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B8%A3%E0%B9%8C-ESP32-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B9%84%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B9%84%E0%B8%9E%E0%B8%97%E0%B8%AD%E0%B8%99.aspx?no=9786160850112" target="_blank">Order Book</a>
                 </div>
@@ -106,13 +106,13 @@ export default function Experiences() {
         2: (
             <div className="space-y-6">
                 {[
-                    { img: "/tii-kittinan-pages/image/rice/ricelogin.png", desc: "Login page to use the Web Application to check rice quality." },
-                    { img: "/tii-kittinan-pages/image/rice/ricesignup.jpg", desc: "Registration page in order to apply for membership in use webapplication." },
-                    { img: "/tii-kittinan-pages/image/rice/ricewebhomepage.jpg", desc: "Home page of the rice quality inspection system." },
-                    { img: "/tii-kittinan-pages/image/rice/riceshowlist.jpg", desc: "The page shows completed items in a table format, with a delete button and a view details button." },
-                    { img: "/tii-kittinan-pages/image/rice/ricewebshowdata.jpg", desc: "The page shows all the detailed information about rice grain size and types." },
-                    { img: "/tii-kittinan-pages/image/rice/ricedetect.jpg", desc: "Picture of the results of successfully detecting rice grains using Yolov8." },
-                    { img: "/tii-kittinan-pages/image/rice/riceposter.jpg", desc: "Poster Project Rice quality inspection system." }
+                    { img: "/image/rice/ricelogin.png", desc: "Login page to use the Web Application to check rice quality." },
+                    { img: "/image/rice/ricesignup.jpg", desc: "Registration page in order to apply for membership in use webapplication." },
+                    { img: "/image/rice/ricewebhomepage.jpg", desc: "Home page of the rice quality inspection system." },
+                    { img: "/image/rice/riceshowlist.jpg", desc: "The page shows completed items in a table format, with a delete button and a view details button." },
+                    { img: "/image/rice/ricewebshowdata.jpg", desc: "The page shows all the detailed information about rice grain size and types." },
+                    { img: "/image/rice/ricedetect.jpg", desc: "Picture of the results of successfully detecting rice grains using Yolov8." },
+                    { img: "/image/rice/riceposter.jpg", desc: "Poster Project Rice quality inspection system." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
                         <Image src={item.img} width={600} height={400} className="rounded-xl shadow-lg" alt={`Rice ${idx}`} />
@@ -128,13 +128,13 @@ export default function Experiences() {
         3: (
             <div className="space-y-6">
                 {[
-                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar.jpg", desc: "The home page of the Health Manage Calendar program with calendar UI." },
-                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar5.jpg", desc: "Setting function page where you can calculate your BMI." },
-                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar6.jpg", desc: "The program can change the background color as the user desires." },
-                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar7.jpg", desc: "To add various activities, you can go to the add activity button." },
-                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar2.jpg", desc: "It adds things that you want to do today." },
-                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar3.jpg", desc: "A page for adding events in advance." },
-                    { img: "/tii-kittinan-pages/image/HealthCalendar/calendar8.jpg", desc: "Recorded events can be viewed by pressing the Today button." }
+                    { img: "/image/HealthCalendar/calendar.jpg", desc: "The home page of the Health Manage Calendar program with calendar UI." },
+                    { img: "/image/HealthCalendar/calendar5.jpg", desc: "Setting function page where you can calculate your BMI." },
+                    { img: "/image/HealthCalendar/calendar6.jpg", desc: "The program can change the background color as the user desires." },
+                    { img: "/image/HealthCalendar/calendar7.jpg", desc: "To add various activities, you can go to the add activity button." },
+                    { img: "/image/HealthCalendar/calendar2.jpg", desc: "It adds things that you want to do today." },
+                    { img: "/image/HealthCalendar/calendar3.jpg", desc: "A page for adding events in advance." },
+                    { img: "/image/HealthCalendar/calendar8.jpg", desc: "Recorded events can be viewed by pressing the Today button." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
                         <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`Calendar ${idx}`} />
@@ -150,15 +150,15 @@ export default function Experiences() {
         4: (
             <div className="space-y-6">
                 {[
-                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud.png", desc: "The home page of the web application Our Future Home." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud2.png", desc: "The form page shows home installment calculations where the user can select 4 banks." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud3.png", desc: "The web application can add up to 4 form pages to select different banks." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud4.png", desc: "After calculating, the form displays the results of the loan amount and interest payments." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud5.png", desc: "The page shows all the details of the Web Application." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud6.png", desc: "Detailed view of form number two." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud7.png", desc: "Monthly repayment schedule view with detailed breakdown." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud8.png", desc: "Interest calculation summary and principal payment details." },
-                    { img: "/tii-kittinan-pages/image/projectclude/projectcloud9.png", desc: "Balance overview and remaining payment information." }
+                    { img: "/image/projectclude/projectcloud.png", desc: "The home page of the web application Our Future Home." },
+                    { img: "/image/projectclude/projectcloud2.png", desc: "The form page shows home installment calculations where the user can select 4 banks." },
+                    { img: "/image/projectclude/projectcloud3.png", desc: "The web application can add up to 4 form pages to select different banks." },
+                    { img: "/image/projectclude/projectcloud4.png", desc: "After calculating, the form displays the results of the loan amount and interest payments." },
+                    { img: "/image/projectclude/projectcloud5.png", desc: "The page shows all the details of the Web Application." },
+                    { img: "/image/projectclude/projectcloud6.png", desc: "Detailed view of form number two." },
+                    { img: "/image/projectclude/projectcloud7.png", desc: "Monthly repayment schedule view with detailed breakdown." },
+                    { img: "/image/projectclude/projectcloud8.png", desc: "Interest calculation summary and principal payment details." },
+                    { img: "/image/projectclude/projectcloud9.png", desc: "Balance overview and remaining payment information." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
                         <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`Loan ${idx}`} />
@@ -174,9 +174,9 @@ export default function Experiences() {
         5: (
             <div className="space-y-6">
                 {[
-                    { img: "/tii-kittinan-pages/image/esp32cam/esp32cam-ml1.jpg", desc: "How to connect the ESP32 CAM circuit to the FT232RL FTDI." },
-                    { img: "/tii-kittinan-pages/image/esp32cam/esp32cam-ml2.jpg", desc: "The power supply module provides electrical power to the boards." },
-                    { img: "/tii-kittinan-pages/image/esp32cam/esp32cam-ml3.jpg", desc: "Using it together with Machine Learning to measure the output." }
+                    { img: "/image/esp32cam/esp32cam-ml1.jpg", desc: "How to connect the ESP32 CAM circuit to the FT232RL FTDI." },
+                    { img: "/image/esp32cam/esp32cam-ml2.jpg", desc: "The power supply module provides electrical power to the boards." },
+                    { img: "/image/esp32cam/esp32cam-ml3.jpg", desc: "Using it together with Machine Learning to measure the output." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
                         <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`ESP32 ${idx}`} />
@@ -191,9 +191,9 @@ export default function Experiences() {
         6: (
             <div className="space-y-6">
                 {[
-                    { img: "/tii-kittinan-pages/image/ics-test/1.jpg", desc: "The home page of the ics application showing a list of restaurants." },
-                    { img: "/tii-kittinan-pages/image/ics-test/2.jpg", desc: "A detail page showing store information and ratings." },
-                    { img: "/tii-kittinan-pages/image/ics-test/3.jpg", desc: "ICS json data file structure." }
+                    { img: "/image/ics-test/1.jpg", desc: "The home page of the ics application showing a list of restaurants." },
+                    { img: "/image/ics-test/2.jpg", desc: "A detail page showing store information and ratings." },
+                    { img: "/image/ics-test/3.jpg", desc: "ICS json data file structure." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
                         <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`ICS ${idx}`} />
