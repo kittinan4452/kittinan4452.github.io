@@ -93,13 +93,13 @@ export default function Experiences() {
         1: (
             <div className="space-y-6">
                 <div className="flex flex-col items-center space-y-4">
-                    <Image src="/image/playsmart1.jpg" width={600} height={400} className="rounded-xl shadow-lg" alt="Internship" />
-                    <p className="text-gray-300">The iot project is implemented using an ESP32 board to control various iot devices. There is a web application to operate the board, which works with a Mysql database and grafana to view data through a dashboard.</p>
+                    <Image src="/image/playsmart1.jpg" width={600} height={400} className="rounded-lg" alt="Internship" />
+                    <p className="text-gray-700 dark:text-gray-300 text-center">The iot project is implemented using an ESP32 board to control various iot devices. There is a web application to operate the board, which works with a Mysql database and grafana to view data through a dashboard.</p>
                 </div>
                 <div className="flex flex-col items-center space-y-4">
-                    <Image src="/image/platsmartbook.jpg" width={600} height={400} className="rounded-xl shadow-lg" alt="Book" />
-                    <p className="text-gray-300">Test, improve, and correct the code examples in the book 'Developing IoT on ESP32 Microcontroller with MicroPython'</p>
-                    <a className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.se-ed.com/product/%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2-IoT-%E0%B8%9A%E0%B8%99%E0%B9%84%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%97%E0%B8%A3%E0%B8%A5%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B8%A3%E0%B9%8C-ESP32-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B9%84%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B9%84%E0%B8%9E%E0%B8%97%E0%B8%AD%E0%B8%99.aspx?no=9786160850112" target="_blank">Order Book</a>
+                    <Image src="/image/platsmartbook.jpg" width={600} height={400} className="rounded-lg" alt="Book" />
+                    <p className="text-gray-700 dark:text-gray-300 text-center">Test, improve, and correct the code examples in the book 'Developing IoT on ESP32 Microcontroller with MicroPython'</p>
+                    <a className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors" href="https://www.se-ed.com/product/%E0%B8%9E%E0%B8%B1%E0%B8%92%E0%B8%99%E0%B8%B2-IoT-%E0%B8%9A%E0%B8%99%E0%B9%84%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B9%82%E0%B8%97%E0%B8%A3%E0%B8%A5%E0%B9%80%E0%B8%A5%E0%B8%AD%E0%B8%A3%E0%B9%8C-ESP32-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B9%84%E0%B8%A1%E0%B9%82%E0%B8%84%E0%B8%A3%E0%B9%84%E0%B8%9E%E0%B8%97%E0%B8%AD%E0%B8%99.aspx?no=9786160850112" target="_blank">Order Book</a>
                 </div>
             </div>
         ),
@@ -115,13 +115,13 @@ export default function Experiences() {
                     { img: "/image/rice/riceposter.jpg", desc: "Poster Project Rice quality inspection system." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
-                        <Image src={item.img} width={600} height={400} className="rounded-xl shadow-lg" alt={`Rice ${idx}`} />
-                        <p className="text-gray-300">{item.desc}</p>
+                        <Image src={item.img} width={600} height={400} className="rounded-lg" alt={`Rice ${idx}`} />
+                        <p className="text-gray-700 dark:text-gray-300 text-center">{item.desc}</p>
                     </div>
                 ))}
-                <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-                    <a className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base  bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.canva.com/design/DAFrCA-VtpI/ucJqw1aN9QpBXBtTks8_EA/edit" target="_blank">Slide</a>
-                    <a className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base  bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://drive.google.com/drive/folders/1JdgM3peBNAMZidzXTHQYGxviwgtFOif6?usp=sharing" target="_blank">Report</a>
+                <div className="flex flex-col sm:flex-row justify-center gap-3">
+                    <a className="px-6 py-3 bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors" href="https://www.canva.com/design/DAFrCA-VtpI/ucJqw1aN9QpBXBtTks8_EA/edit" target="_blank">Slide</a>
+                    <a className="px-6 py-3 bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors" href="https://drive.google.com/drive/folders/1JdgM3peBNAMZidzXTHQYGxviwgtFOif6?usp=sharing" target="_blank">Report</a>
                 </div>
             </div>
         ),
@@ -137,13 +137,13 @@ export default function Experiences() {
                     { img: "/image/HealthCalendar/calendar8.jpg", desc: "Recorded events can be viewed by pressing the Today button." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
-                        <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`Calendar ${idx}`} />
-                        <p className="text-gray-300">{item.desc}</p>
+                        <img src={item.img} className="rounded-lg max-w-full" alt={`Calendar ${idx}`} />
+                        <p className="text-gray-700 dark:text-gray-300 text-center">{item.desc}</p>
                     </div>
                 ))}
-                <div className="flex justify-center space-x-4">
-                    <a className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://docs.google.com/presentation/d/1OgddoFiPq2E9NQHEs3SflncBQDfTPsnSb3zaTQCtD64/edit#slide=id.p" target="_blank">Slide</a>
-                    <a className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://github.com/Gunn-Treepaech/Project-ACP" target="_blank">Github</a>
+                <div className="flex justify-center gap-3">
+                    <a className="px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors" href="https://docs.google.com/presentation/d/1OgddoFiPq2E9NQHEs3SflncBQDfTPsnSb3zaTQCtD64/edit#slide=id.p" target="_blank">Slide</a>
+                    <a className="px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors" href="https://github.com/Gunn-Treepaech/Project-ACP" target="_blank">Github</a>
                 </div>
             </div>
         ),
@@ -161,13 +161,13 @@ export default function Experiences() {
                     { img: "/image/projectclude/projectcloud9.png", desc: "Balance overview and remaining payment information." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
-                        <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`Loan ${idx}`} />
-                        <p className="text-gray-300">{item.desc}</p>
+                        <img src={item.img} className="rounded-lg max-w-full" alt={`Loan ${idx}`} />
+                        <p className="text-gray-700 dark:text-gray-300 text-center">{item.desc}</p>
                     </div>
                 ))}
-                <div className="flex justify-center space-x-4">
-                    <a className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.canva.com/design/DAF-kqRzmuY/5NWAyX3Prsfz19RLp48Y5A/edit" target="_blank">Slide</a>
-                    <a className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://github.com/Gunn-Treepaech/Project_Cloud_App_2023" target="_blank">Github</a>
+                <div className="flex justify-center gap-3">
+                    <a className="px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-lg transition-colors" href="https://www.canva.com/design/DAF-kqRzmuY/5NWAyX3Prsfz19RLp48Y5A/edit" target="_blank">Slide</a>
+                    <a className="px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-lg transition-colors" href="https://github.com/Gunn-Treepaech/Project_Cloud_App_2023" target="_blank">Github</a>
                 </div>
             </div>
         ),
@@ -179,12 +179,12 @@ export default function Experiences() {
                     { img: "/image/esp32cam/esp32cam-ml3.jpg", desc: "Using it together with Machine Learning to measure the output." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
-                        <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`ESP32 ${idx}`} />
-                        <p className="text-gray-300">{item.desc}</p>
+                        <img src={item.img} className="rounded-lg max-w-full" alt={`ESP32 ${idx}`} />
+                        <p className="text-gray-700 dark:text-gray-300 text-center">{item.desc}</p>
                     </div>
                 ))}
                 <div className="flex justify-center">
-                    <a className="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://www.canva.com/design/DAFytnNNnCA/69Y1JNFmQKpUU79uK7wDKA/edit" target="_blank">Slide</a>
+                    <a className="px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-white rounded-lg transition-colors" href="https://www.canva.com/design/DAFytnNNnCA/69Y1JNFmQKpUU79uK7wDKA/edit" target="_blank">Slide</a>
                 </div>
             </div>
         ),
@@ -196,12 +196,12 @@ export default function Experiences() {
                     { img: "/image/ics-test/3.jpg", desc: "ICS json data file structure." }
                 ].map((item, idx) => (
                     <div key={idx} className="flex flex-col items-center space-y-4">
-                        <img src={item.img} className="rounded-xl shadow-lg max-w-full" alt={`ICS ${idx}`} />
-                        <p className="text-gray-300">{item.desc}</p>
+                        <img src={item.img} className="rounded-lg max-w-full" alt={`ICS ${idx}`} />
+                        <p className="text-gray-700 dark:text-gray-300 text-center">{item.desc}</p>
                     </div>
                 ))}
                 <div className="flex justify-center">
-                    <a className="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg hover:shadow-lg hover:scale-105 transition-all" href="https://github.com/kittinan4452/project-test-frontend-ics.git" target="_blank">Github</a>
+                    <a className="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-colors" href="https://github.com/kittinan4452/project-test-frontend-ics.git" target="_blank">Github</a>
                 </div>
             </div>
         )
@@ -212,159 +212,117 @@ export default function Experiences() {
     const cardRefs = useStaggeredIntersection(experiences.length, 'animate-card-entrance', 150);
 
     return (
-        <div id="experiences" className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 sm:p-6 lg:p-8 overflow-hidden">
+        <div id="experiences" className="relative min-h-screen bg-gray-50 dark:bg-[#181818] p-4 sm:p-6 lg:p-8">
 
-            {/* Background decorative elements */}
-            <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
-            <div className="absolute bottom-20 right-20 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
-
-            <div className="max-w-7xl mx-auto relative z-10">
-                {/* Modern Header with enhanced animations */}
-                <div ref={headerRef} className="text-center mb-20 opacity-0">
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-animated-strong text-transparent bg-clip-text mb-8 font-mono"
-                    style={{
-                        WebkitBackgroundClip: 'text',
-                        backgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent'
-                    }}>
+            <div className="max-w-7xl mx-auto">
+                {/* Header */}
+                <div ref={headerRef} className="text-center mb-16 opacity-0">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 font-mono">
                         Projects & Experiences
                     </h1>
-                    <div className="flex items-center justify-center gap-6">
-                        <div className="h-1 w-32 bg-gradient-to-r from-transparent to-red-500 rounded-full"></div>
-                        <div className="flex gap-2">
-                            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                            <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-                        </div>
-                        <div className="h-1 w-32 bg-gradient-to-r from-red-500 to-transparent rounded-full"></div>
-                    </div>
-                    <p className="mt-6 text-gray-400 text-lg font-mono">My journey through code and innovation</p>
+                    <div className="h-0.5 w-20 bg-red-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600 dark:text-gray-400 font-mono">My journey through code and innovation</p>
                 </div>
 
-                {/* Modern Cards Grid with glassmorphism */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Cards Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {experiences.map((exp, index) => (
                         <div
                             key={exp.id}
                             ref={el => cardRefs[index] = el}
-                            className="group glass-morphism-dark rounded-3xl overflow-hidden hover-lift cursor-pointer border border-white/10 hover:border-red-500/30 transition-all duration-500 opacity-0"
+                            className="group bg-white dark:bg-gray-900/30 rounded-xl overflow-hidden cursor-pointer border border-gray-200 dark:border-white/5 hover:border-gray-300 dark:hover:border-white/10 transition-all duration-300 shadow-sm opacity-0"
                             onClick={() => setActiveModal(exp.id)}
                         >
-                            {/* Enhanced Image Section with overlay effect */}
-                            <div className="relative h-56 overflow-hidden">
+                            {/* Image Section */}
+                            <div className="relative h-48 overflow-hidden bg-gray-100 dark:bg-gray-900/50">
                                 <img
                                     src={exp.image}
                                     alt={exp.title}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
 
-                                {/* Gradient Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
-
-                                {/* Floating Icon */}
-                                <div className={`absolute top-6 right-6 p-4 rounded-full bg-gradient-to-r ${exp.color} shadow-2xl hover-lift glow-red-hover`}>
-                                    {exp.icon}
-                                </div>
-
-                                {/* Category Badge */}
-                                <div className="absolute top-6 left-6">
-                                    <span className={`px-3 py-1 rounded-full text-xs font-mono glass-morphism border border-white/20`}>
+                                {/* Company Badge */}
+                                <div className="absolute top-4 left-4">
+                                    <span className="px-3 py-1 rounded-full text-xs font-mono bg-black/60 dark:bg-black/60 backdrop-blur-sm text-white">
                                         {exp.company}
                                     </span>
                                 </div>
                             </div>
 
-                            {/* Enhanced Content Section */}
-                            <div className="p-8 space-y-6">
-                                <div className="space-y-3">
-                                    <h2 className="text-xl sm:text-2xl font-bold text-white font-mono group-hover:gradient-text-red group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300">
+                            {/* Content Section */}
+                            <div className="p-6 space-y-4">
+                                <div>
+                                    <h2 className="text-lg font-bold text-gray-900 dark:text-white font-mono mb-2">
                                         {exp.title}
                                     </h2>
-                                    <p className="text-sm text-red-400 font-mono flex items-center gap-2">
-                                        <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
+                                    <p className="text-xs text-red-600 dark:text-red-500 font-mono">
                                         {exp.company}
                                     </p>
                                 </div>
 
-                                <p className="text-gray-300 text-sm leading-relaxed line-clamp-3 font-mono">
+                                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-3 font-mono">
                                     {exp.description}
                                 </p>
 
-                                {/* Modern CTA Button */}
+                                {/* CTA Button */}
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         setActiveModal(exp.id);
                                     }}
-                                    className={`group/btn w-full py-4 px-6 rounded-2xl bg-gradient-to-r ${exp.color} font-mono font-bold hover-lift magnetic-btn transition-all duration-300 shadow-lg hover:shadow-2xl border border-white/20 hover:border-white/40`}
+                                    className="w-full py-3 px-4 rounded-lg bg-red-600 hover:bg-red-500 text-white font-mono text-sm font-semibold transition-colors duration-200"
                                 >
-                                    <span className="flex items-center justify-center gap-3 relative z-10">
-                                        <span>View Details</span>
-                                        <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                                    </span>
+                                    View Details
                                 </button>
-
-                                {/* Hover Effect Particles */}
-                                <div className="absolute inset-0 pointer-events-none">
-                                    <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-100 animate-ping"></div>
-                                    <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-red-400 rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{ animationDelay: '0.3s' }}></div>
-                                    <div className="absolute bottom-1/4 left-1/3 w-1 h-1 bg-pink-400 rounded-full opacity-0 group-hover:opacity-100 animate-ping" style={{ animationDelay: '0.6s' }}></div>
-                                </div>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
 
-            {/* Enhanced Modal with modern UI */}
+            {/* Modal */}
             {activeModal && (
                 <div
-                    className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-fade-in"
+                    className="fixed inset-0 bg-black/80 dark:bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
                     onClick={() => setActiveModal(null)}
                 >
                     <div
                         ref={modalRef}
-                        className="glass-morphism-dark rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-hidden border border-white/20 shadow-2xl animate-card-entrance"
+                        className="bg-white dark:bg-gray-900 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-hidden border border-gray-200 dark:border-white/10 shadow-2xl"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        {/* Enhanced Modal Header */}
-                        <div className="sticky top-0 glass-morphism-dark border-b border-white/10 p-6 sm:p-8 flex justify-between items-center gap-4 z-10">
+                        {/* Modal Header */}
+                        <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-white/10 p-6 flex justify-between items-center gap-4">
                             <div className='flex-1 min-w-0'>
-                                <h2 className="text-2xl sm:text-3xl lg:text-4xl break-words font-bold gradient-animated-strong text-transparent bg-clip-text font-mono"
-                                style={{
-                                    WebkitBackgroundClip: 'text',
-                                    backgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent'
-                                }}>
+                                <h2 className="text-2xl sm:text-3xl break-words font-bold text-gray-900 dark:text-white font-mono">
                                     {experiences.find(e => e.id === activeModal)?.title}
                                 </h2>
-                                <p className="text-red-400 font-mono mt-2 text-lg flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
+                                <p className="text-red-600 dark:text-red-500 font-mono mt-2 text-sm">
                                     {experiences.find(e => e.id === activeModal)?.company}
                                 </p>
                             </div>
                             <button
                                 onClick={() => setActiveModal(null)}
-                                className="p-3 rounded-full glass-morphism hover-lift border border-white/20 hover:border-red-500/50 transition-all duration-300 group"
+                                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
                             >
-                                <X className="w-5 h-5 sm:w-6 sm:h-6 text-gray-400 group-hover:text-red-400 transition-colors" />
+                                <X className="w-6 h-6 text-gray-600 dark:text-gray-400" />
                             </button>
                         </div>
 
-                        {/* Enhanced Modal Content */}
-                        <div className="p-6 sm:p-8 overflow-y-auto max-h-[calc(90vh-120px)]">
-                            <div className="space-y-8 animate-text-reveal">
+                        {/* Modal Content */}
+                        <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+                            <div className="space-y-6">
                                 {modalContent[activeModal]}
                             </div>
                         </div>
 
                         {/* Modal Footer */}
-                        <div className="glass-morphism-dark border-t border-white/10 p-6">
+                        <div className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-white/10 p-6">
                             <div className="flex items-center justify-between">
-                                <p className="text-sm text-gray-400 font-mono">Press ESC or click outside to close</p>
+                                <p className="text-sm text-gray-500 dark:text-gray-500 font-mono">Press ESC or click outside to close</p>
                                 <button
                                     onClick={() => setActiveModal(null)}
-                                    className="px-6 py-3 bg-gradient-to-r from-red-600 to-pink-600 text-white font-mono font-bold rounded-full hover-lift magnetic-btn transition-all duration-300"
+                                    className="px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-mono font-semibold rounded-lg transition-colors duration-200"
                                 >
                                     Close
                                 </button>

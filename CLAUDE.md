@@ -4,18 +4,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal resume website built with **Next.js 14** and deployed to **GitHub Pages**. The site showcases Kittinan Kannahong's portfolio with sections for profile, about, skills, and experiences. It features a dark theme with red accent colors and smooth scrolling animations.
+This is a personal resume website built with **Next.js 14** (App Router) and deployed to **GitHub Pages**. The site showcases Kittinan Kannahong's portfolio with sections for profile, about, skills, and experiences. It features a dark theme with red accent colors and smooth scrolling animations.
+
+**Technology Stack:**
+- Next.js 14.2.4 with static site generation
+- React 18 with `'use client'` directive throughout
+- Tailwind CSS + DaisyUI for styling
+- Lucide React, FontAwesome, and React Icons for iconography
+- React Slick for image carousels
 
 ## Development Commands
 
 ### Basic Development
 - `npm run dev` - Start development server (http://localhost:3000)
-- `npm run build` - Build production version
-- `npm run start` - Start production server
+- `npm run build` - Build production version (outputs to `./out` directory)
+- `npm run start` - Start production server (note: not typically used with static export)
 - `npm run lint` - Run ESLint
 
 ### Deployment
-The project automatically deploys to GitHub Pages via GitHub Actions workflow when pushing to the `main` branch.
+The project automatically deploys to GitHub Pages via GitHub Actions workflow (`.github/workflows/nextjs.yml`) when pushing to the `main` branch. The workflow:
+- Detects npm as package manager
+- Uses Node.js 20
+- Builds static site with `next build`
+- Deploys `./out` directory to GitHub Pages
 
 ## Architecture & Project Structure
 
@@ -63,58 +74,104 @@ public/image/
 
 ## Key Implementation Details
 
+### Client-Side Architecture
+**CRITICAL:** All components in this project use `'use client'` directive. This is intentional and necessary because:
+- Navigation uses hash-based smooth scrolling with DOM manipulation
+- Interactive components (mobile menu, animations, carousels) require browser APIs
+- No server components are used despite Next.js 14 App Router
+
 ### Navigation System
-- Uses smooth scrolling with `scrollIntoView({ behavior: "smooth" })`
-- URL hash cleanup with `history.replaceState()` after navigation
-- Mobile-responsive hamburger menu with animations
-- Active section highlighting
+The site uses a custom hash-based navigation system:
+- **Navbar** (`app/components/layout/Navbar.js`): Handles section scrolling via `scrollIntoView({ behavior: "smooth" })`
+- **URL Cleanup**: After navigation, `history.replaceState()` clears hash/path to keep URL clean
+- **Initial Load**: `app/page.js` includes `useEffect` that checks URL path/hash on mount and scrolls to appropriate section
+- **Mobile Menu**: Animated hamburger menu with staggered item reveals
 
 ### Styling System
-- **Tailwind CSS** with **DaisyUI** plugin
-- Custom CSS animations defined in `globals.css`
-- Dark theme with red accent colors (`#red-600`, `#red-500`)
-- Custom font families: Archivo Black (headers), Kode Mono (body)
+- **Tailwind CSS** with **DaisyUI** plugin for component styles
+- Custom CSS animations defined in `app/globals.css` (keyframes: `slideInUp`, `fadeInScale`, `bounceIn`, `fade-in`)
+- Dark theme background: `bg-[#181818]` with red accents (`red-600`, `red-500`)
+- **Custom Fonts**: Google Fonts imported via CSS
+  - `Archivo Black` - Headings/titles
+  - `Kode Mono` - Body text (monospace style)
+- Font variables available: `--font-kode-mono`, `--font-archivo-black`
 
 ### Image Handling
-- Next.js Image component with `unoptimized: true` for GitHub Pages
-- Organized in `/public/image/` with project-specific folders
-- Path references use absolute paths from public directory
+- **Next.js Image component** with `unoptimized: true` (required for GitHub Pages static export)
+- Images stored in `/public/image/` directory
+- **Critical for GitHub Pages**: `next.config.mjs` sets `output: "export"` and `images.unoptimized: true`
+- Project-specific subdirectories: `internshipall/`, `HealthCalendar/`, `esp32cam/`, `rice/`, `projectclude/`
 
-### Animations
-- Custom keyframes: `slideInUp`, `fadeInScale`, `bounceIn`, `fade-in`
-- Staggered animation delays for sequential element reveals
-- Scroll-triggered animations using CSS classes and inline delays
+### Animation Patterns
+The project uses a consistent animation pattern:
+- Elements start with `opacity-0` class
+- Animation classes applied with inline style delays for staggered effects
+- Example pattern: `className="opacity-0 animate-slideInUp" style={{ animationDelay: '0.1s' }}`
+- Hover transitions on interactive elements (buttons, nav items, cards)
 
 ## Important Configuration
 
 ### Next.js Config (next.config.mjs)
-- Static export configuration for GitHub Pages
-- Image optimization disabled for compatibility
-- Base path configuration (commented out when not needed)
+```javascript
+{
+  output: "export",           // Static export for GitHub Pages
+  images: {
+    unoptimized: true,        // Required for static export
+  },
+  // basePath: "/tii-kittinan-pages",  // Uncomment when deploying to subpath
+}
+```
 
-### Tailwind Config
-- Custom font families configured
-- DaisyUI plugin integration
-- Extended theme with gradient backgrounds
+### GitHub Actions Workflow (.github/workflows/nextjs.yml)
+- Triggers on push to `main` branch
+- Uses Node.js 20 with npm
+- Caches `.next/cache` for faster builds
+- Deploys `./out` directory to GitHub Pages
+- Allows one concurrent deployment (does not cancel in-progress runs)
 
-### GitHub Actions Workflow
-- Automatic deployment on push to main branch
-- Next.js static site generation
-- Outputs to `./out` directory for Pages deployment
+## Common Development Tasks
 
-## Development Notes
+### Adding a New Section
+1. Create component in `app/components/sections/`
+2. Add section in `app/page.js` with unique `id` attribute
+3. Add navigation item to `menuItems` array in `app/components/layout/Navbar.js`
+4. Apply consistent styling pattern (max-width, rounded, shadow, margin)
 
-### Path References
-- Image paths in components use `/` prefix (referencing public directory)
-- Some components reference `/tii-kittinan-pages/` base path (for deployment)
-- Resume download link: `/image/resume_kittinan.pdf`
+### Updating Images
+- Place images in `/public/image/` with descriptive subdirectories
+- Reference with `/image/your-path` (leading slash is critical)
+- Use `Image` component from Next.js with `unoptimized` prop if needed
+- Example: `/image/projectclude/screenshot.png`
 
-### Component Patterns
-- All components use `'use client'` directive for client-side interactivity
-- Consistent use of Tailwind classes with responsive breakpoints
-- Custom icon components for tech stack visualization
+### Modifying Animations
+- Animation keyframes defined in `app/globals.css`
+- Add custom keyframes following existing pattern
+- Apply with inline delay: `style={{ animationDelay: '0.2s' }}`
+- Base animation class: `opacity-0 animate-[animationName]`
 
-### Animation Usage
-- Elements use opacity-0 with animation classes for fade-in effects
-- Sequential delays create staggered reveal animations
-- Hover states and transitions throughout the interface
+### Working with Icons
+- **Lucide React** (primary): Used in Navbar and throughout UI
+- **FontAwesome**: Available via `@fortawesome/react-fontawesome`
+- **React Icons**: Alternative icon library
+- Custom skill icons in `app/components/ui/icons/` for tech stack
+
+## Important Notes
+
+### Static Export Considerations
+- This is a **static site** - no API routes, server actions, or dynamic routing
+- All interactivity must be client-side (hence `'use client'` everywhere)
+- Build output is in `./out` directory, not standard `.next`
+- Test builds locally with `npm run build` before pushing
+
+### Path Reference Gotchas
+- Image paths must start with `/` (absolute from public directory)
+- Some legacy code references `/tii-kittinan-pages/` base path - update these when adding basePath
+- Resume download: `/image/resume_kittinan.pdf`
+- Favicon path currently has typo: `/icon?/image/...` (should be `/image/`)
+
+### Component Styling Patterns
+- Container pattern: `max-w-screen-xl mx-auto rounded-2xl shadow-2xl mb-10`
+- Text colors: `text-gray-300` for body, `text-red-600` for accents
+- Hover states: `hover:text-red-400`, `transition-colors duration-300`
+- Red accent borders: `border-red-600/30` (30% opacity)
+- Backdrop blur: `backdrop-blur-md` for overlays

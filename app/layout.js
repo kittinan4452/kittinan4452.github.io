@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/layout/Navbar"
 import Footer from "./components/layout/Footer";
+import { ThemeProvider } from "./contexts/ThemeContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -11,24 +12,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html className="bg-[#181818]" lang="en">
-      
+    <html className="dark" lang="en">
       <link
   rel="icon"
-  href="/icon?/image/icontitle/icons8.png"
+  href="/image/icontitle/icons8.png"
   type="image/png"
   sizes="32x32"
 />
       <body className={inter.className}  >
-      <div className=" min-w-full min-h-full">
-      
+      <ThemeProvider>
+      <div className="min-w-full min-h-full">
       <Navbar/>
       {children}
       <Footer/>
       </div>
-
-
-      
+      </ThemeProvider>
      </body>
     </html>
   );

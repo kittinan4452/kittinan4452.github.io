@@ -22,7 +22,7 @@ export default function Home() {
     }
   }, []);
   return (
-    <div className="min-h-[800px] snap-mandatory snap-y bg-[#181818] py-10 px-4">
+    <div className="min-h-[800px] snap-mandatory snap-y bg-gray-50 dark:bg-[#181818] py-10 px-4">
       {/* Profile Section */}
       <section
         id="contentinfo"

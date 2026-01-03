@@ -1,9 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 // นำเข้า Icon จาก Lucide แทนการใช้ Emoji ใน Desktop (ถ้าต้องการ)
-import { Home, Code, Zap, Mail, Menu, X, User, Wrench } from "lucide-react";
+import { Home, Code, Zap, Mail, Menu, X, User, Moon, Sun } from "lucide-react";
+import { useTheme } from "../../contexts/ThemeContext";
 
 export default function Navbar() {
+  const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -54,46 +56,41 @@ const handleScrollToSection = (id) => {
 
   const menuItems = [
     { href: "contentinfo", label: "Home", icon: <Home className="w-4 h-4" /> },
-    { href: "about", label: "About Me", icon: <User className="w-4 h-4" /> },
+    { href: "about", label: "About", icon: <User className="w-4 h-4" /> },
     { href: "skills", label: "Skills", icon: <Code className="w-4 h-4" /> },
     {
       href: "experiences",
-      label: "Experiences",
+      label: "Projects",
       icon: <Zap className="w-4 h-4" />,
     },
-    { href: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> },
   ];
 
   return (
     <nav >
       <div
-        className={`fixed w-full z-50 top-0 left-0 transition-all duration-300   ${
+        className={`fixed w-full z-50 top-0 left-0 transition-all duration-300 ${
           scrolled
-            ? "bg-black/80 backdrop-blur-md border-b border-red-600/20 shadow-lg shadow-red-600/5"
-            : "bg-transparent backdrop-blur-sm"
+            ? "bg-black/60 backdrop-blur-sm border-b border-white/10"
+            : "bg-transparent"
         }`}
       >
         <div className="flex items-center justify-between mx-auto px-6 py-4  max-w-screen-xl">
           {/* Logo */}
-          <a href="/" className="group relative">
+          <a href="/" className="group">
             <div className="flex items-center">
-              <span className="font-mono text-3xl font-bold text-red-600 group-hover:text-red-500 transition-colors duration-300">
+              <span className="font-mono text-2xl font-bold text-red-500">
                 {"<"}
               </span>
-              <h1 className="font-mono text-3xl font-bold text-red-600 group-hover:text-red-500 transition-colors duration-300 mx-1">
+              <h1 className="font-mono text-2xl font-bold text-red-500 mx-1">
                 Tii
               </h1>
-              <span className="font-mono text-3xl font-bold text-white group-hover:text-gray-300 transition-colors duration-300 max-md:hidden">
-                -Kittinan
+              <span className="font-mono text-2xl font-bold text-gray-300 dark:text-gray-300 max-md:hidden">
+                Kittinan
               </span>
-              <span className="font-mono text-3xl font-bold text-red-600 group-hover:text-red-500 transition-colors duration-300 ml-1">
-                {"/"}
-              </span>
-              <span className="font-mono text-3xl font-bold text-red-600 group-hover:text-red-500 transition-colors duration-300">
-                {">"}
+              <span className="font-mono text-2xl font-bold text-red-500 ml-1">
+                {"/>"}
               </span>
             </div>
-            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-600 to-red-400 group-hover:w-full transition-all duration-300"></div>
           </a>
 
           {/* Desktop Menu */}
@@ -102,43 +99,42 @@ const handleScrollToSection = (id) => {
               <li key={index}>
                 <a
                   onClick={() => handleScrollToSection(item.href)}
-                  // 🚨 ปรับปรุง: ใช้ Flexbox ภายใน A tag โดยตรง
-                  className="flex items-center gap-2 relative px-4 py-2 font-mono text-sm text-gray-300 hover:text-red-400 transition-colors duration-300 group hover:bg-red-600/10 rounded"
+                  className="flex items-center gap-2 px-4 py-2 font-mono text-sm text-gray-400 dark:text-gray-400 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5 dark:hover:bg-white/5"
                 >
-                  <span className="text-red-500 group-hover:text-red-400 transition-colors duration-300">
+                  <span className="text-red-500">
                     {item.icon}
                   </span>
-                  <span className="relative z-10">{item.label}</span>
-                  {/* ลบคลาสที่ Comment ไว้เพื่อความกระชับ */}
+                  <span>{item.label}</span>
                 </a>
               </li>
             ))}
+            {/* Theme Toggle Button */}
+            <li>
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg hover:bg-white/5 dark:hover:bg-white/5 transition-colors"
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-5 h-5 text-gray-400 dark:text-gray-400" />
+                ) : (
+                  <Moon className="w-5 h-5 text-gray-600" />
+                )}
+              </button>
+            </li>
           </ul>
 
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden relative w-10 h-10 text-white focus:outline-none group"
+            className="md:hidden text-white focus:outline-none p-2"
             aria-label="Toggle menu"
           >
-            <div className="absolute inset-0 rounded border border-red-600/30 group-hover:border-red-600 transition-colors duration-300"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              {/* ใช้ Menu/X Icon แทน Hamburger Bars เพื่อความทันสมัย */}
-              <span
-                className={`transition-opacity duration-300 ${
-                  isMenuOpen ? "opacity-0" : "opacity-100"
-                }`}
-              >
-                <Menu className="w-6 h-6 text-red-600" />
-              </span>
-              <span
-                className={`absolute transition-opacity duration-300 ${
-                  isMenuOpen ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                <X className="w-6 h-6 text-red-600" />
-              </span>
-            </div>
+            {isMenuOpen ? (
+              <X className="w-6 h-6 text-gray-300" />
+            ) : (
+              <Menu className="w-6 h-6 text-gray-300" />
+            )}
           </button>
         </div>
 
@@ -148,46 +144,32 @@ const handleScrollToSection = (id) => {
             isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <ul className="px-6 py-4 space-y-2 border-t border-red-600/20 bg-black/70 backdrop-blur-sm">
-            {" "}
-            {/* ปรับ background ให้เข้มขึ้นนิดหน่อย */}
+          <ul className="px-6 py-4 space-y-2 border-t border-white/10 bg-black/80 dark:bg-black/80">
             {menuItems.map((item, index) => (
-              <li
-                key={index}
-                // 🚨 ปรับปรุง: เพิ่ม transform สำหรับ animation การเปิด/ปิดเมนู
-                className={`transform transition-all duration-300 ${
-                  isMenuOpen
-                    ? "translate-x-0 opacity-100"
-                    : "-translate-x-4 opacity-0"
-                }`}
-                style={{
-                  transitionDelay: isMenuOpen ? `${index * 50}ms` : "0ms",
-                }}
-              >
+              <li key={index}>
                 <a
-                //   href={item.href}
-                //   onClick={() => setIsMenuOpen(false)}
-                onClick={() => handleScrollToSection(item.href)}
-                  className="flex items-center gap-3 px-4 py-3 font-mono text-sm text-gray-300 hover:text-white hover:bg-red-600/10 rounded border border-transparent hover:border-red-600/30 transition-all duration-300 group"
+                  onClick={() => handleScrollToSection(item.href)}
+                  className="flex items-center gap-3 px-4 py-3 font-mono text-sm text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-colors duration-200"
                 >
-                  <span className="text-lg text-red-500">{item.icon}</span>
-                  <span className="flex-1">{item.label}</span>
-                  <svg
-                    className="w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300 text-red-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  <span className="text-red-500">{item.icon}</span>
+                  <span>{item.label}</span>
                 </a>
               </li>
             ))}
+            {/* Theme Toggle in Mobile Menu */}
+            <li>
+              <button
+                onClick={toggleTheme}
+                className="flex items-center gap-3 px-4 py-3 font-mono text-sm text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-colors duration-200 w-full"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-5 h-5 text-gray-400" />
+                ) : (
+                  <Moon className="w-5 h-5 text-gray-400" />
+                )}
+                <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+              </button>
+            </li>
           </ul>
         </div>
       </div>
