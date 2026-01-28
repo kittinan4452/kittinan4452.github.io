@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Footer() {
     // Use a fixed year to avoid hydration mismatch, or calculate it safely
-    const currentYear = 2024; // Update this each year or use a more robust method
+    const currentYear = new Date().getFullYear(); // Update this each year or use a more robust method
 
     const socialLinks = [
         { icon: faGithub, href: "https://github.com/kittinan4452", label: "GitHub" },
