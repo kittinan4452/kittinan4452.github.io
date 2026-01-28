@@ -1,6 +1,6 @@
 'use client';
-import { SiAngular, SiBootstrap, SiCss3, SiDialogflow, SiDjango, SiDocker, SiFirebase, SiFlask, SiGithub, SiGo, SiHtml5, SiJavascript, SiLaravel, SiMongodb, SiMui, SiMysql, SiNestjs, SiNextdotjs, SiNodedotjs, SiPhp, SiPostgresql, SiPostman, SiPython, SiReact, SiTailwindcss, SiTypescript, SiUbuntu } from "react-icons/si";
-import { FaGitlab, FaJava, FaJenkins } from "react-icons/fa";
+import { SiAngular, SiBootstrap, SiCss3, SiDialogflow, SiDjango, SiDocker, SiFirebase, SiFlask, SiGithub, SiGo, SiHtml5, SiJavascript, SiLaravel, SiMongodb, SiMui, SiMysql, SiNestjs, SiNextdotjs, SiNodedotjs, SiPhp, SiPostgresql, SiPostman, SiPython, SiReact, SiTailwindcss, SiTypescript, SiUbuntu, SiWireshark } from "react-icons/si";
+import { FaBitbucket, FaGitlab, FaJava, FaJenkins, FaVuejs } from "react-icons/fa";
 
 export default function Skills() {
     const skillCategories = [
@@ -17,6 +17,7 @@ export default function Skills() {
                 { name: "Bootstrap", icon: <SiBootstrap />, color: "text-purple-600" },
                 { name: "Material UI", icon: <SiMui />, color: "text-blue-400" },
                 { name: "Angular", icon: <SiAngular />, color: "text-red-600" },
+                { name: "Vue.js", icon: <FaVuejs /> , color: "text-green-500" },
             ]
         },
         {
@@ -52,6 +53,8 @@ export default function Skills() {
                 { name: "GitHub", icon: <SiGithub />, color: "text-white" },
                 { name: "GitLab", icon: <FaGitlab />, color: "text-orange-600" },
                 { name: "Jenkins", icon: <FaJenkins />, color: "text-red-600" },
+                { name: 'Bitbucket', icon: <FaBitbucket />, color: 'text-blue-600' },
+                { name: 'Wireshark', icon: <SiWireshark />, color: 'text-blue-400' },
             ]
         }
     ];
