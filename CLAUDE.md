@@ -39,37 +39,41 @@ The project automatically deploys to GitHub Pages via GitHub Actions workflow (`
 ### Directory Structure
 ```
 app/
-├── layout.js              # Root layout with Navbar and Footer
-├── page.js               # Main page with section routing
-├── globals.css           # Global styles, animations, and Tailwind config
-├── components/           # Organized component structure
-│   ├── layout/           # Layout components
-│   │   ├── Navbar.js     # Navigation with responsive mobile menu
-│   │   └── Footer.js     # Footer component
-│   ├── sections/         # Page section components
-│   │   ├── Yourself.js   # Hero/Profile section
-│   │   ├── Abort.js      # About section
-│   │   ├── Skills.js     # Skills section
-│   │   └── Experiences.js # Experience/project section
-│   ├── ui/               # Reusable UI components
-│   │   ├── Imageprofire.js # Profile image component
-│   │   ├── Loading.js    # Loading component
-│   │   └── icons/        # Custom skill icon components
-│   │       ├── Icondjango.js, Iconnext.js, etc.
-│   └── gallery/          # Image gallery components
-│       └── Internship.js # Internship photos carousel
+├── layout.js              # Root layout with Navbar, Footer, ThemeProvider
+├── page.js               # Main page — imports and renders all sections
+├── globals.css           # Tailwind base + animation keyframes
+├── contexts/
+│   └── ThemeContext.js   # Dark/light theme toggle (localStorage + system pref)
+├── hooks/
+│   └── useIntersectionObserver.js  # Scroll animation hooks (see below)
+└── components/
+    ├── layout/
+    │   ├── Navbar.js     # Navigation with active-section indicator (IntersectionObserver)
+    │   └── Footer.js     # Footer with social links
+    ├── sections/
+    │   ├── Hero.js       # Hero/profile section (replaces Yourself.js)
+    │   ├── About.js      # About + education timeline (replaces Abort.js)
+    │   ├── Skills.js     # Tab-based tech stack grid
+    │   └── Projects.js   # Project cards + modal (replaces Experiences.js)
+    └── ui/
+        ├── ProfileImage.js  # Profile image with gradient ring (replaces Imageprofire.js)
+        └── Loading.js       # Loading component
 ```
+
+> **Legacy files kept but unused:** `Yourself.js`, `Abort.js`, `Experiences.js`, `Imageprofire.js`
 
 ### Public Assets Structure
 ```
 public/image/
-├── resume_kittinan.pdf              # Downloadable resume
+├── resume_kittinan.pdf              # Downloadable resume (also at app/resumefile/)
 ├── icontitle/icons8.png             # Favicon
 ├── internshipall/                   # Internship photos
 ├── HealthCalendar/                  # Health Calendar project screenshots
 ├── esp32cam/                        # ESP32 Cam project screenshots
-├── rice/                           # Rice disease detection project
-└── projectclude/                   # Projectclude screenshots
+├── rice/                            # Rice disease detection project
+├── projectclude/                    # Projectclude screenshots
+├── smart-spender/                   # Smart Spender project (filenames have spaces — use encodeURIComponent)
+└── ics-test/                        # ICS test project (1.png, 2.png, 3.jpg)
 ```
 
 ## Key Implementation Details
@@ -101,6 +105,19 @@ The site uses a custom hash-based navigation system:
 - Images stored in `/public/image/` directory
 - **Critical for GitHub Pages**: `next.config.mjs` sets `output: "export"` and `images.unoptimized: true`
 - Project-specific subdirectories: `internshipall/`, `HealthCalendar/`, `esp32cam/`, `rice/`, `projectclude/`
+
+### Theme System
+`app/contexts/ThemeContext.js` provides dark/light mode:
+- Reads from `localStorage` on mount, falls back to `prefers-color-scheme`
+- Toggles `dark` class on `document.documentElement` (Tailwind `darkMode: 'class'`)
+- `ThemeProvider` wraps the root layout; consume with `useTheme()` hook
+
+### Custom Scroll Hooks (`app/hooks/useIntersectionObserver.js`)
+Four hooks for scroll-triggered animations:
+- `useIntersectionObserver(animationClass, options)` — single element, adds class when visible
+- `useStaggeredIntersection(count, baseClass, staggerDelay, options)` — multiple elements with timed delay
+- `useParallax(speed)` — returns `transform` style for parallax effects
+- `useScrollFade(threshold)` — fades element based on scroll direction
 
 ### Animation Patterns
 The project uses a consistent animation pattern:
@@ -153,7 +170,6 @@ The project uses a consistent animation pattern:
 - **Lucide React** (primary): Used in Navbar and throughout UI
 - **FontAwesome**: Available via `@fortawesome/react-fontawesome`
 - **React Icons**: Alternative icon library
-- Custom skill icons in `app/components/ui/icons/` for tech stack
 
 ## Important Notes
 
