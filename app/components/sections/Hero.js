@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       id="contentinfo"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-16"
       style={{ background: 'var(--bg-base)' }}
     >
       {/* Subtle dot grid */}
