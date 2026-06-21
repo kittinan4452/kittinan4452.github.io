@@ -119,11 +119,15 @@ const modalContent = {
     <div className="space-y-8">
       {[
         { img: '/image/rice/ricelogin.png', desc: 'Login page for the rice quality web app.' },
-        { img: '/image/rice/ricesignup.jpg', desc: 'Registration page for new users.' },
-        { img: '/image/rice/ricewebhomepage.jpg', desc: 'Homepage of the rice quality inspection system.' },
-        { img: '/image/rice/riceshowlist.jpg', desc: 'Results table with delete and detail buttons.' },
-        { img: '/image/rice/ricewebshowdata.jpg', desc: 'Detailed view of rice grain size and type data.' },
-        { img: '/image/rice/ricedetect.jpg', desc: 'YOLOv8 detection results on rice grains.' },
+        { img: '/image/rice/ricesignup.png', desc: 'Registration page for new users.' },
+        { img: '/image/rice/riceforgotpassword.png', desc: 'Forgot password / reset page.' },
+        { img: '/image/rice/ricehomepage.png', desc: 'Homepage — upload a rice sample image and enter seller info for AI analysis.' },
+        { img: '/image/rice/ricedetail.png', desc: 'Inspection result with grain count, broken-rice percentage and average grain size.' },
+        { img: '/image/rice/ricecomposition.png', desc: 'Detailed rice composition breakdown by grain type and size.' },
+        { img: '/image/rice/ricelist.png', desc: 'Inspection list with detail and delete buttons.' },
+        { img: '/image/rice/ricedashboard.png', desc: 'Admin dashboard with inspection stats and 14-day trend chart.' },
+        { img: '/image/rice/riceusers.png', desc: 'User management with roles and inspection counts.' },
+        { img: '/image/rice/ricedetect.png', desc: 'YOLOv8 detection results on rice grains (zoomed view).' },
         { img: '/image/rice/riceposter.jpg', desc: 'Project poster.' },
       ].map((item, i) => (
         <div key={i} className="flex flex-col items-center gap-3">
