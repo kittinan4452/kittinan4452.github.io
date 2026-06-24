@@ -99,7 +99,7 @@ export default function Hero() {
             Email
           </a>
           <a
-            href="/image/resume_kittinan.pdf"
+            href="/image/file/resume_kittinan.pdf"
             download="resume_kittinan.pdf"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-mono text-sm font-semibold transition-all duration-200"
             style={{ boxShadow: '0 4px 20px rgba(220,38,38,0.25)' }}

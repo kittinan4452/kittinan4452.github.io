@@ -8,7 +8,7 @@ const projects = [
     id: 1,
     title: 'Internship',
     company: 'PlaySmart IoT & Systems',
-    image: '/image/playsmart.jpg',
+    image: '/image/Internship/playsmart.jpg',
     description:
       'IoT system design and installation. Assisted in writing a book on IoT development with ESP32 and MicroPython.',
     icon: <Briefcase className="w-4 h-4" />,
@@ -19,7 +19,7 @@ const projects = [
     id: 2,
     title: 'Rice Quality Inspection',
     company: 'Senior Project',
-    image: '/image/projectrice.jpg',
+    image: '/image/rice/projectrice.jpg',
     description:
       'ML-powered rice quality inspection using YOLOv8 and digital image processing with a Django + Tailwind web app.',
     icon: <Award className="w-4 h-4" />,
@@ -87,13 +87,13 @@ const modalContent = {
   1: (
     <div className="space-y-8">
       <div className="flex flex-col items-center gap-4">
-        <ModalImage src="/image/playsmart1.jpg" alt="IoT Project" />
+        <ModalImage src="/image/Internship/playsmart1.jpg" alt="IoT Project" />
         <p className="font-mono text-sm text-gray-400 text-center">
           IoT project using ESP32 to control devices, with a web app connected to MySQL and Grafana dashboard.
         </p>
       </div>
       <div className="flex flex-col items-center gap-4">
-        <ModalImage src="/image/platsmartbook.jpg" alt="Book" />
+        <ModalImage src="/image/Internship/platsmartbook.jpg" alt="Book" />
         <p className="font-mono text-sm text-gray-400 text-center">
           Tested and corrected code examples in the book &ldquo;Developing IoT on ESP32 with MicroPython&rdquo;.
         </p>
