@@ -1,9 +1,16 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
 export default function ProfileImage({ size = 180 }) {
   const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setLoaded(true);
+    }
+  }, []);
 
   return (
     <div className="relative inline-block">
@@ -29,6 +36,7 @@ export default function ProfileImage({ size = 180 }) {
             }}
           />
           <Image
+            ref={imgRef}
             src="https://avatars.githubusercontent.com/u/76421734?v=4"
             alt="Kittinan Kunnahong"
             width={size}
@@ -36,6 +44,7 @@ export default function ProfileImage({ size = 180 }) {
             className="w-full h-full object-cover"
             style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.5s ease' }}
             onLoad={() => setLoaded(true)}
+            onError={() => setLoaded(true)}
           />
         </div>
       </div>
