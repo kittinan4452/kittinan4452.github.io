@@ -1,6 +1,7 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { Briefcase, Code, Award, Cpu, Calendar, Home, X, Wallet } from 'lucide-react';
+import { CardImage, ModalImage } from '../ui/ImageWithSkeleton';
 
 const projects = [
   {
@@ -86,21 +87,13 @@ const modalContent = {
   1: (
     <div className="space-y-8">
       <div className="flex flex-col items-center gap-4">
-        <img
-          src="/image/playsmart1.jpg"
-          className="rounded-xl w-full max-w-xl"
-          alt="IoT Project"
-        />
+        <ModalImage src="/image/playsmart1.jpg" alt="IoT Project" />
         <p className="font-mono text-sm text-gray-400 text-center">
           IoT project using ESP32 to control devices, with a web app connected to MySQL and Grafana dashboard.
         </p>
       </div>
       <div className="flex flex-col items-center gap-4">
-        <img
-          src="/image/platsmartbook.jpg"
-          className="rounded-xl w-full max-w-xl"
-          alt="Book"
-        />
+        <ModalImage src="/image/platsmartbook.jpg" alt="Book" />
         <p className="font-mono text-sm text-gray-400 text-center">
           Tested and corrected code examples in the book &ldquo;Developing IoT on ESP32 with MicroPython&rdquo;.
         </p>
@@ -131,7 +124,7 @@ const modalContent = {
         { img: '/image/rice/riceposter.jpg', desc: 'Project poster.' },
       ].map((item, i) => (
         <div key={i} className="flex flex-col items-center gap-3">
-          <img src={item.img} className="rounded-xl w-full max-w-xl" alt={`Rice ${i}`} />
+          <ModalImage src={item.img} alt={`Rice ${i}`} />
           <p className="font-mono text-sm text-gray-400 text-center">{item.desc}</p>
         </div>
       ))}
@@ -167,7 +160,7 @@ const modalContent = {
         { img: '/image/HealthCalendar/calendar8.jpg', desc: 'View recorded events with the Today button.' },
       ].map((item, i) => (
         <div key={i} className="flex flex-col items-center gap-3">
-          <img src={item.img} className="rounded-xl w-full max-w-xl" alt={`Calendar ${i}`} />
+          <ModalImage src={item.img} alt={`Calendar ${i}`} />
           <p className="font-mono text-sm text-gray-400 text-center">{item.desc}</p>
         </div>
       ))}
@@ -203,7 +196,7 @@ const modalContent = {
         { img: '/image/projectclude/projectcloud8.png', desc: 'Interest and principal payment summary.' },
       ].map((item, i) => (
         <div key={i} className="flex flex-col items-center gap-3">
-          <img src={item.img} className="rounded-xl w-full max-w-xl" alt={`Loan ${i}`} />
+          <ModalImage src={item.img} alt={`Loan ${i}`} />
           <p className="font-mono text-sm text-gray-400 text-center">{item.desc}</p>
         </div>
       ))}
@@ -235,7 +228,7 @@ const modalContent = {
         { img: '/image/esp32cam/esp32cam-ml3.jpg', desc: 'ML integration measuring output from camera feed.' },
       ].map((item, i) => (
         <div key={i} className="flex flex-col items-center gap-3">
-          <img src={item.img} className="rounded-xl w-full max-w-xl" alt={`ESP32 ${i}`} />
+          <ModalImage src={item.img} alt={`ESP32 ${i}`} />
           <p className="font-mono text-sm text-gray-400 text-center">{item.desc}</p>
         </div>
       ))}
@@ -266,9 +259,8 @@ const modalContent = {
         { file: 'Screenshot From 2026-06-10 09-44-20.png', desc: 'AI Chat Assistant — ผู้ช่วยวิเคราะห์การเงิน ถามเกี่ยวกับรายจ่าย แนะนำวิธีประหยัด และวางแผนออมเงินผ่านการสนทนา' },
       ].map(({ file, desc }, i) => (
         <div key={i} className="flex flex-col items-center gap-3">
-          <img
+          <ModalImage
             src={`/image/smart-spender/${encodeURIComponent(file)}`}
-            className="rounded-xl w-full max-w-xl"
             alt={`Smart Spender ${i + 1}`}
           />
           <p className="font-mono text-sm text-gray-400 text-center">{desc}</p>
@@ -294,7 +286,7 @@ const modalContent = {
         { img: '/image/ics-test/3.jpg', desc: 'JSON data file structure.' },
       ].map((item, i) => (
         <div key={i} className="flex flex-col items-center gap-3">
-          <img src={item.img} className="rounded-xl w-full max-w-xl" alt={`ICS ${i}`} />
+          <ModalImage src={item.img} alt={`ICS ${i}`} />
           <p className="font-mono text-sm text-gray-400 text-center">{item.desc}</p>
         </div>
       ))}
@@ -377,7 +369,7 @@ export default function Projects() {
                 className="relative h-44 overflow-hidden"
                 style={{ background: 'var(--bg-alt)' }}
               >
-                <img
+                <CardImage
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
